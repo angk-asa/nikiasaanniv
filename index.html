@@ -222,7 +222,6 @@
       margin-top: 6px;
     }
 
-    /* FEATURE GRID - Teks kiri rata */
     .feature-grid {
       display: flex;
       flex-wrap: wrap;
@@ -233,11 +232,11 @@
     .feature-text {
       flex: 1;
       min-width: 250px;
-      text-align: left; /* Rata kiri */
+      text-align: left;
     }
-    .feature-image {
+    .feature-video {
       flex: 1;
-      min-width: 250px;
+      min-width: 280px;
     }
     .feature-icon {
       font-size: 2rem;
@@ -272,60 +271,46 @@
       text-align: left;
     }
 
-    /* MUSIC PLAYER STYLES - menggantikan feature-image lama */
-    .music-player {
+    /* VIDEO PLAYER STYLES */
+    .video-player {
       background: linear-gradient(145deg, #ffe4db, #ffd3c8);
       border-radius: 40px;
-      padding: 30px 20px;
+      padding: 20px;
       text-align: center;
-      min-height: 300px;
+      min-height: 320px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    .music-icon {
-      font-size: 4rem;
+    .video-icon {
+      font-size: 3.5rem;
       color: #e07a68;
-      margin-bottom: 20px;
-      animation: pulse 2s infinite;
+      margin-bottom: 15px;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .music-title {
+    .video-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: #5e3a32;
-      margin-bottom: 8px;
+      margin-bottom: 15px;
     }
-    .music-artist {
-      font-size: 0.85rem;
-      color: #a07b6e;
-      margin-bottom: 20px;
-    }
-    audio {
+    video {
       width: 100%;
-      max-width: 260px;
-      margin-top: 10px;
-      border-radius: 30px;
+      max-width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      background: #f5e6e0;
     }
-    audio::-webkit-media-controls-panel {
-      background-color: #ffefea;
-    }
-    .music-note {
+    .video-note {
       font-size: 0.7rem;
       color: #bc8a7a;
-      margin-top: 15px;
+      margin-top: 12px;
       display: flex;
       gap: 8px;
       justify-content: center;
     }
 
-    /* Gallery Styles */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -480,7 +465,7 @@
     </div>
   </div>
 
-  <!-- FEATURE GRID dengan Music Player di kanan -->
+  <!-- FEATURE GRID dengan Video Player di kanan -->
   <div class="feature-grid">
     <div class="feature-text">
       <div class="feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
@@ -493,24 +478,24 @@
       </ul>
     </div>
     
-    <!-- MUSIC PLAYER - menggantikan eternal compass -->
-    <div class="music-player">
-      <div class="music-icon">
-        <i class="fas fa-headphones"></i>
-      </div>
-      <div class="music-title">Our Song</div>
-      <div class="music-artist">For you, my love ♫</div>
-      
-      <!-- GANTI LINK MP3 DI BAWAH INI dengan file lagu kamu -->
-      <audio controls autoplay loop id="annivAudio">
-        <source src="https://open.spotify.com/track/2kJMPjf1stbTEy0ZEOeTxf?si=cb77063faeaa479b" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-      
-      <div class="music-note">
-        <i class="fas fa-heart" style="font-size:0.6rem;"></i>
-        <span>Our anniversary playlist</span>
-        <i class="fas fa-heart" style="font-size:0.6rem;"></i>
+    <!-- VIDEO PLAYER -->
+    <div class="feature-video">
+      <div class="video-player">
+        <div class="video-icon">
+          <i class="fas fa-video"></i>
+        </div>
+        <div class="video-title">Our precious moments ♥</div>
+        
+        <video controls width="100%" poster="https://via.placeholder.com/400x240/ffe4db/e07a68?text=Our+Video">
+          <source src="https://drive.google.com/file/d/1OWtE_E0bvDZVvoC1MenuEh7O4XO60UJw/view?usp=sharing" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        
+        <div class="video-note">
+          <i class="fas fa-heart" style="font-size:0.6rem;"></i>
+          <span>Our anniversary video collage</span>
+          <i class="fas fa-heart" style="font-size:0.6rem;"></i>
+        </div>
       </div>
     </div>
   </div>
@@ -602,7 +587,6 @@
 </div>
 
 <script>
-  // ========== WHATSAPP CONFIG ==========
   const whatsappNumber = "6282127770375";
   const whatsappMessage = "halo mamas, ini adek mau titip pesan❤️";
   const encodedMessage = encodeURIComponent(whatsappMessage);
@@ -632,7 +616,6 @@
     });
   }
   
-  // ========== GALERI FOTO MODAL ==========
   function openImageModal(cardElement) {
     const img = cardElement.querySelector('.gallery-img');
     if (img) {
@@ -652,21 +635,6 @@
       closeImageModal();
     }
   });
-  
-  // ========== AUTO PLAY MUSIC (perlu interaksi user dulu) ==========
-  // Beberapa browser blokir autoplay, jadi kita coba play setelah user klik anywhere
-  const audio = document.getElementById('annivAudio');
-  if (audio) {
-    // Coba play otomatis
-    audio.play().catch(e => {
-      console.log('Autoplay blocked. User needs to interact first.');
-      // Tambahin event listener sekali klik untuk play
-      document.body.addEventListener('click', function playOnce() {
-        audio.play();
-        document.body.removeEventListener('click', playOnce);
-      }, { once: true });
-    });
-  }
 </script>
 </body>
 </html>
