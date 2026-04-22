@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Journey | Anniversary</title>
+    <style>
+        /* Base Styles ala Apple */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background-color: #fbfbfd; 
+            color: #1d1d1f;
+            line-height: 1.5;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), 
+                        url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070&auto=format&fit=crop'); /* Ganti dengan foto cover kalian */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: #515154;
+            max-width: 600px;
+        }
+
+        /* Gallery Grid ala Apple Cards */
+        .container {
+            max-width: 1100px;
+            margin: -100px auto 50px;
+            padding: 0 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 21px;
+            margin-bottom: 5px;
+        }
+
+        .card-content p {
+            color: #86868b;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 100px 20px;
+            background: #f5f5f7;
+        }
+
+        .heart-icon {
+            color: #ff3b30;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>WANDERLUST OF US.</h1>
+        <p>Celebrating every chapter of our story.</p>
+    </section>
+
+    <div class="container">
+        <div class="gallery-grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1516589174184-c68526674fd6?q=80&w=1974&auto=format&fit=crop" alt="Foto 1">
+                <div class="card-content">
+                    <h3>The Beginning</h3>
+                    <p>Tempat pertama kita bertemu dan memulai segalanya.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=2070&auto=format&fit=crop" alt="Foto 2">
+                <div class="card-content">
+                    <h3>LDR Journey</h3>
+                    <p>Jakarta - Bali bukan halangan buat kita.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?q=80&w=2070&auto=format&fit=crop" alt="Foto 3">
+                <div class="card-content">
+                    <h3>Future Dreams</h3>
+                    <p>Membangun masa depan bersama, selangkah demi selangkah.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="heart-icon">❤️</div>
+        <p>Happy Anniversary, Nikia.</p>
+        <p style="color: #86868b; font-size: 12px; margin-top: 10px;">Created with love using GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
