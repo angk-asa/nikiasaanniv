@@ -1,203 +1,610 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wanderlust of Us | Anniversary</title>
-    <style>
-        /* Base Styles - Clean & Modern */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            background-color: #f5f5f7; 
-            color: #1d1d1f; 
-            padding: 50px 20px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Our Anniversary Story | WANDER of Love</title>
+  <!-- Google Fonts & Font Awesome for Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* Container - Atur lebar website */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    body {
+      background: #fffaf7;  /* soft warm background */
+      font-family: 'Inter', sans-serif;
+      color: #2e2a28;
+      line-height: 1.4;
+    }
 
-        /* 1. SECTION: HERO (FOTO UTAMA BESAR) */
-        .hero-section {
-            margin-bottom: 40px;
-        }
-        .hero-card {
-            position: relative;
-            width: 100%;
-            height: 400px; /* Sesuaikan tinggi sesuai keinginan */
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            background-color: #ffffff; /* Fallback background */
-        }
-        .hero-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .hero-card .hero-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1));
-        }
+    /* container system */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
 
-        /* 2. SECTION: INTRO (TULISAN BESAR & SOSIAL MEDIA) */
-        .intro-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 50px;
-            padding: 0 20px;
-        }
-        .intro-text h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-        .intro-text p {
-            color: #86868b;
-            font-size: 16px;
-        }
-        .intro-social {
-            color: #d63384; /* Warna romantis untuk ikon */
-            font-size: 24px;
-        }
+    /* typography */
+    h1, h2, h3, .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+    }
 
-        /* 3. SECTION: THREE CARDS (TIGA FOTO KECIL) */
-        .three-cards-section {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-        .card-small {
-            background-color: #ffffff;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-        .card-small:hover { transform: translateY(-5px); }
-        .card-small img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-        .card-small-content { padding: 15px; }
-        .card-small h3 { font-size: 18px; margin-bottom: 5px; }
-        .card-small p { color: #86868b; font-size: 14px; }
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      letter-spacing: -0.3px;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: #ffb7b2;
+      border-radius: 4px;
+    }
+    .center-title {
+      text-align: center;
+    }
+    .center-title:after {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+    }
 
-        /* 4. SECTION: TWO LARGE CARDS (DUA FOTO BESAR DI BAWAH) */
-        .two-large-cards-section {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-        .card-large {
-            position: relative;
-            background-color: #ffffff;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-            height: 350px;
-        }
-        .card-large img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .card-large-content {
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
-            color: #ffffff;
-        }
-        .card-large h3 { font-size: 20px; margin-bottom: 5px; }
-        .card-large p { font-size: 14px; color: #f5f5f7; }
+    /* buttons & badges */
+    .btn-primary {
+      display: inline-block;
+      background: #ff8a7a;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s ease;
+      box-shadow: 0 4px 8px rgba(255, 138, 122, 0.2);
+      border: none;
+      font-size: 0.95rem;
+    }
+    .btn-primary:hover {
+      background: #f06e5e;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(255, 100, 80, 0.25);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #ffb7b2;
+      color: #5e3a32;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .btn-outline:hover {
+      background: #ffefec;
+      border-color: #ff8a7a;
+    }
 
-        /* Footer */
-        footer { text-align: center; margin-top: 50px; color: #d63384; }
+    /* header / navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 24px 0 16px;
+      border-bottom: 1px solid #ffe2db;
+    }
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #c45c4a, #f2988b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logo span {
+      font-size: 1.6rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #4a3b36;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #ff7a66;
+    }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .three-cards-section, .two-large-cards-section {
-                grid-template-columns: 1fr;
-            }
-            .hero-card { height: 250px; }
-        }
-    </style>
+    /* hero section with anniversary twist */
+    .hero {
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+    .hero-badge {
+      background: #ffefea;
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #c45c4a;
+      margin-bottom: 24px;
+      backdrop-filter: blur(2px);
+    }
+    .hero h1 {
+      font-size: 3.4rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #2e241f;
+    }
+    .hero-highlight {
+      background: linear-gradient(120deg, #ffe0d6, #ffcdc2);
+      padding: 0 12px;
+      display: inline-block;
+      border-radius: 30px;
+    }
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 32px;
+      font-size: 1.2rem;
+      color: #6b4e44;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* stats section */
+    .stats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 24px;
+      background: #fff5f2;
+      padding: 40px 30px;
+      border-radius: 56px;
+      margin: 48px 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+    .stat-card {
+      flex: 1;
+      text-align: center;
+      min-width: 140px;
+    }
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      font-family: 'Playfair Display', serif;
+      color: #e07a68;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #6f4e42;
+      margin-top: 8px;
+    }
+
+    /* feature 2-col */
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin: 60px 0;
+      align-items: center;
+    }
+    .feature-text {
+      flex: 1;
+    }
+    .feature-icon {
+      font-size: 2.4rem;
+      background: #ffefea;
+      width: 70px;
+      height: 70px;
+      border-radius: 35px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .feature-text h3 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+    .feature-text p {
+      color: #5e4a41;
+      margin-bottom: 24px;
+    }
+    .feature-list {
+      list-style: none;
+    }
+    .feature-list li {
+      margin-bottom: 18px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .feature-list i {
+      color: #ff8a7a;
+      font-size: 1.3rem;
+      width: 28px;
+    }
+    .feature-image {
+      flex: 1;
+      background: linear-gradient(145deg, #ffe4db, #ffd3c8);
+      border-radius: 48px;
+      padding: 40px 20px;
+      text-align: center;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.05);
+    }
+
+    /* destination cards (anniversary vibe) */
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+      margin: 40px 0;
+    }
+    .dest-card {
+      background: white;
+      border-radius: 36px;
+      padding: 24px 20px;
+      text-align: center;
+      transition: all 0.25s;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.03);
+      border: 1px solid #ffded5;
+    }
+    .dest-card:hover {
+      transform: translateY(-6px);
+      border-color: #ffbcae;
+      box-shadow: 0 18px 28px -12px rgba(230, 100, 70, 0.2);
+    }
+    .dest-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+    .dest-card h4 {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+      font-family: 'Playfair Display', serif;
+    }
+    .dest-tag {
+      background: #fff0eb;
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin: 10px 0;
+      color: #bc6f5c;
+    }
+    .dest-location {
+      font-size: 0.85rem;
+      color: #a07b6e;
+    }
+
+    /* journey / cards row */
+    .journey-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin: 40px 0;
+    }
+    .journey-item {
+      flex: 1;
+      background: #fff6f2;
+      border-radius: 32px;
+      padding: 28px;
+      transition: 0.2s;
+    }
+    .journey-item h3 {
+      font-size: 1.5rem;
+      margin: 12px 0 8px;
+    }
+    .journey-item i {
+      font-size: 2rem;
+      color: #e27f6b;
+    }
+
+    /* tour packages simplified */
+    .package-cta {
+      background: #ffece6;
+      border-radius: 60px;
+      padding: 32px 40px;
+      margin: 40px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .package-cta h3 {
+      font-size: 1.6rem;
+    }
+
+    /* steps 1-2-3 */
+    .steps-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin: 50px 0;
+      justify-content: center;
+    }
+    .step {
+      flex: 1;
+      text-align: center;
+      background: white;
+      padding: 28px 20px;
+      border-radius: 44px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.02);
+      border: 1px solid #ffe0d6;
+    }
+    .step-number {
+      background: #ffc7bc;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 60px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #5e2e22;
+      margin: 0 auto 18px;
+    }
+
+    /* anniversary special quote */
+    .love-note {
+      background: #fdeae4;
+      border-radius: 60px;
+      padding: 48px 32px;
+      text-align: center;
+      margin: 60px 0;
+    }
+    .love-note p {
+      font-size: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      max-width: 700px;
+      margin: 0 auto 20px;
+      color: #3e2c26;
+    }
+    .heart-icon {
+      font-size: 2rem;
+      color: #e46854;
+    }
+
+    footer {
+      border-top: 1px solid #ffe0d6;
+      padding: 40px 0 32px;
+      margin-top: 40px;
+      text-align: center;
+      color: #9a7b6e;
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        padding: 0 20px;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .stats-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-
-        <section class="hero-section">
-            <div class="hero-card">
-                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070" alt="Foto Utama">
-                <div class="hero-overlay"></div>
-            </div>
-        </section>
-
-        <section class="intro-section">
-            <div class="intro-text">
-                <h1>Mengenang Jejak Kita.</h1>
-                <p>Celebrating another beautiful chapter together.</p>
-            </div>
-            <div class="intro-social">❤️</div> </section>
-
-        <section class="three-cards-section">
-            <div class="card-small">
-                <img src="https://images.unsplash.com/photo-1516589174184-c68526674fd6?q=80&w=1974" alt="Momen 1">
-                <div class="card-small-content">
-                    <h3>Awal Mula</h3>
-                    <p>Tempat kita pertama kali bertemu.</p>
-                </div>
-            </div>
-            <div class="card-small">
-                <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=2070" alt="Momen 2">
-                <div class="card-small-content">
-                    <h3>Perjalanan Kita</h3>
-                    <p>Setiap langkah terasa berarti.</p>
-                </div>
-            </div>
-            <div class="card-small">
-                <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?q=80&w=2070" alt="Momen 3">
-                <div class="card-small-content">
-                    <h3>Masa Depan</h3>
-                    <p>Mimpi-mimpi besar menanti.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="two-large-cards-section">
-            <div class="card-large">
-                <img src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=1974" alt="Paket Spesial 1">
-                <div class="card-large-content">
-                    <h3>Special Moment #1</h3>
-                    <p>Celebrating the years we've shared.</p>
-                </div>
-            </div>
-            <div class="card-large">
-                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1974" alt="Paket Spesial 2">
-                <div class="card-large-content">
-                    <h3>Special Moment #2</h3>
-                    <p>Looking forward to many more years.</p>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p>Happy Anniversary to Nikia.</p>
-        </footer>
-
+<div class="container">
+  <!-- navigation dengan sentuhan anniversary -->
+  <div class="navbar">
+    <div class="logo">WANDER<span style="font-size:1rem;">♥</span>.love</div>
+    <div class="nav-links">
+      <a href="#">Our Story</a>
+      <a href="#">Moments</a>
+      <a href="#">Anniv Vows</a>
+      <a href="#" class="btn-outline" style="padding: 6px 18px;">❤️ Special</a>
     </div>
+  </div>
 
+  <!-- Hero section: anniversary special -->
+  <div class="hero">
+    <div class="hero-badge">
+      <i class="fas fa-heart" style="margin-right: 6px;"></i> 2 Years & Forever
+    </div>
+    <h1>
+      A love story written in<br>
+      <span class="hero-highlight">sunsets & sweet moments</span>
+    </h1>
+    <p>Celebrating our incredible journey — from first dates to endless adventures. Every memory feels like a tropical breeze, every laugh a hidden gem. Welcome to our anniversary scrapbook.</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn-primary"><i class="fas fa-gift"></i> Relive the magic</a>
+      <a href="#" class="btn-outline"><i class="far fa-heart"></i> Leave a note</a>
+    </div>
+  </div>
+
+  <!-- stats yang dimodifikasi dengan vibe anniversary -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">730<span style="font-size:1.5rem;">+</span></div>
+      <div class="stat-label">Days of Togetherness</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">24<span style="font-size:1.5rem;">k</span></div>
+      <div class="stat-label">Sweet Moments Shared</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">12<span style="font-size:1.5rem;">+</span></div>
+      <div class="stat-label">Dreamy Destinations</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Endless Love</div>
+    </div>
+  </div>
+
+  <!-- local expertise with anniversary twist -->
+  <div class="feature-grid">
+    <div class="feature-text">
+      <div class="feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
+      <h3>Our love map <br>crafted with heart</h3>
+      <p>Every hug, surprise & late-night talk made us discover new “destinations” in each other's soul. Here's how we keep the romance alive:</p>
+      <ul class="feature-list">
+        <li><i class="fas fa-check-circle"></i> <strong>✨ All-in-One Memories</strong> – From beach trips to cozy dates, we capture everything in one place.</li>
+        <li><i class="fas fa-headset"></i> <strong>💬 24/7 Heart Support</strong> – I’m always here for you, day or night, no matter the distance.</li>
+        <li><i class="fas fa-map-marked-alt"></i> <strong>🏝️ Curated Anniv Plans</strong> – Future adventures already waiting for us (Japan? Bali? Siargao?)</li>
+      </ul>
+    </div>
+    <div class="feature-image">
+      <i class="fas fa-heartbeat" style="font-size: 6rem; color:#e07a68;"></i>
+      <div style="margin-top: 20px; font-weight: 500;">our <br> eternal compass</div>
+    </div>
+  </div>
+
+  <!-- Top Destinations with cute anniversary locations -->
+  <h2 class="section-title">💖 Our favorite love spots</h2>
+  <div class="destinations-grid">
+    <div class="dest-card">
+      <div class="dest-icon"><i class="fas fa-umbrella-beach"></i></div>
+      <h4>El Nido Cove</h4>
+      <div class="dest-tag">Sunset Kisses</div>
+      <div class="dest-location">Palawan, PH • First trip together</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-icon"><i class="fas fa-mountain"></i></div>
+      <h4>Baguio Fog</h4>
+      <div class="dest-tag">Cozy Highlands</div>
+      <div class="dest-location">Benguet • Anniversary getaway</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-icon"><i class="fas fa-water"></i></div>
+      <h4>Siargao Tide</h4>
+      <div class="dest-tag">Surf & Soul</div>
+      <div class="dest-location">Cloud 9 • Laughing waves</div>
+    </div>
+    <div class="dest-card">
+      <div class="dest-icon"><i class="fas fa-landmark"></i></div>
+      <h4>Vigan Nostalgia</h4>
+      <div class="dest-tag">Heritage Vibe</div>
+      <div class="dest-location">Ilocos • vintage romance</div>
+    </div>
+  </div>
+
+  <!-- From island escapes to mountain towns (anniversary edition) -->
+  <div style="margin: 50px 0 20px;">
+    <h2 class="section-title">🌊 From island escapes to cozy dreams,<br>where our next journey takes us</h2>
+  </div>
+  <div class="journey-cards">
+    <div class="journey-item">
+      <i class="fas fa-sailboat"></i>
+      <h3>Island Hopper Adventure</h3>
+      <p>Hidden lagoons & private beach picnics — just like our secret date at sunrise. Let's book that El Nido paradise again.</p>
+    </div>
+    <div class="journey-item">
+      <i class="fas fa-tree"></i>
+      <h3>Northern Highland Ecopark</h3>
+      <p>Cool breeze and hand-in-hand walks through pine forests. A perfect escape for our next anniv.</p>
+    </div>
+  </div>
+
+  <!-- Tour packages adapted to "Love Packages" -->
+  <div class="package-cta">
+    <div>
+      <h3>💝 Love Packages (Anniv Special)</h3>
+      <p>Customizable romantic getaways, staycations & surprise plans.</p>
+    </div>
+    <a href="#" class="btn-primary" style="background:#c55b48;">Browse all packages <i class="fas fa-arrow-right"></i></a>
+  </div>
+
+  <!-- steps 1-2-3 but with anniversary planning -->
+  <h2 class="section-title center-title" style="text-align: center;">Making memories as easy as 1-2-3</h2>
+  <div class="steps-row">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Pick a dream</h3>
+      <p>Choose from our handpicked romantic escapes or recreate your favorite date.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Add personal spark</h3>
+      <p>Customize with surprises, flowers, or a secret message from the heart.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Cherish forever</h3>
+      <p>We help arrange the details — you just create beautiful memories together.</p>
+    </div>
+  </div>
+
+  <!-- special love note / anniversary quote -->
+  <div class="love-note">
+    <i class="fas fa-heart heart-icon"></i>
+    <p>“Every love story is beautiful, but ours is my favorite. Happy anniversary, my sunshine. Here’s to more sunsets, more laughter, and countless adventures in your arms.”</p>
+    <div style="font-weight: 600; margin-top: 8px;">— Yours, always. ✨</div>
+  </div>
+
+  <!-- footer dengan vibe personal -->
+  <footer>
+    <p><i class="fas fa-heart" style="color:#ff8a7a;"></i> Designed with all my love • WANDER.love anniversary edition <i class="fas fa-heart" style="color:#ff8a7a;"></i></p>
+    <p style="font-size: 0.8rem; margin-top: 12px;">© 2026 • Celebrating us — a journey of endless wander and sweet devotion.</p>
+  </footer>
+</div>
+
+<!-- tambahan efek lucu dan interaksi kecil (opsional) -->
+<script>
+  // menambahkan sentuhan anniversary interaktif: ketika tombol "Leave a note" di klik, alert manis
+  document.querySelectorAll('.btn-outline').forEach(btn => {
+    if(btn.innerText.includes('Leave a note') || btn.innerText.includes('Leave a note')) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('💌 You just left a virtual love note! Happy Anniversary, sweetheart! 🎂❤️');
+      });
+    }
+  });
+  // tombol browse packages atau relive magic alert manis
+  const reliveBtn = document.querySelector('.btn-primary');
+  if(reliveBtn && reliveBtn.innerText.includes('Relive the magic')) {
+    reliveBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('✨ Reliving every smile, every hug — this is our forever gallery. Happy Anniversary! ✨');
+    });
+  }
+  // tambahan untuk package button
+  const packageBtn = document.querySelector('.package-cta .btn-primary');
+  if(packageBtn) {
+    packageBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('🎁 Special anniversary packages just for us! Let’s plan something magical 🎁');
+    });
+  }
+</script>
 </body>
 </html>
