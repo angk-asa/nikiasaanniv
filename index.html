@@ -28,7 +28,6 @@
       padding: 0 20px;
     }
 
-    /* responsive padding untuk HP */
     @media (max-width: 640px) {
       .container {
         padding: 0 16px;
@@ -66,7 +65,6 @@
       width: 70px;
     }
 
-    /* buttons */
     .btn-primary {
       display: inline-block;
       background: #ff8a7a;
@@ -102,7 +100,6 @@
       border-color: #ff8a7a;
     }
 
-    /* navbar responsive */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -148,7 +145,6 @@
       }
     }
 
-    /* hero */
     .hero {
       padding: 40px 0 30px;
       text-align: center;
@@ -194,7 +190,6 @@
       flex-wrap: wrap;
     }
 
-    /* stats grid responsive */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -227,7 +222,6 @@
       margin-top: 6px;
     }
 
-    /* feature grid responsive */
     .feature-grid {
       display: flex;
       flex-wrap: wrap;
@@ -273,36 +267,56 @@
       justify-content: center;
     }
 
-    /* destination cards responsive */
-    .destinations-grid {
+    /* Gallery Styles - menggantikan destinations */
+    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
       margin: 35px 0;
     }
-    @media (max-width: 480px) {
-      .destinations-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-    }
-    .dest-card {
+    .gallery-card {
       background: white;
-      border-radius: 32px;
-      padding: 20px 16px;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .gallery-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    .gallery-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-caption {
+      padding: 16px;
       text-align: center;
-      transition: 0.2s;
-      border: 1px solid #ffded5;
     }
-    .dest-card h4 {
-      font-size: clamp(1.3rem, 4.5vw, 1.6rem);
+    .gallery-caption h4 {
+      font-size: 1.3rem;
+      font-family: 'Playfair Display', serif;
+      color: #4a3b36;
+      margin-bottom: 6px;
     }
-    .dest-icon {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    .gallery-caption p {
+      font-size: 0.8rem;
+      color: #a07b6e;
+    }
+    /* fallback jika gambar tidak ada, pakai placeholder warna */
+    .gallery-placeholder {
+      background: linear-gradient(145deg, #ffe0d6, #ffcdc2);
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #e07a68;
     }
 
-    /* journey cards responsive */
     .journey-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -319,23 +333,6 @@
       margin: 10px 0 6px;
     }
 
-    /* package cta responsive */
-    .package-cta {
-      background: #ffece6;
-      border-radius: 40px;
-      padding: 28px 24px;
-      margin: 40px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 18px;
-    }
-    .package-cta h3 {
-      font-size: clamp(1.2rem, 5vw, 1.6rem);
-    }
-
-    /* steps responsive */
     .steps-row {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -356,7 +353,6 @@
       margin: 0 auto 14px;
     }
 
-    /* love note */
     .love-note {
       background: #fdeae4;
       border-radius: 50px;
@@ -378,7 +374,6 @@
       font-size: clamp(0.7rem, 3vw, 0.85rem);
     }
 
-    /* tambahan touch friendly */
     button, a, .btn-primary, .btn-outline {
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
@@ -397,7 +392,8 @@
     <div class="logo">NIKI<span style="font-size:0.9rem;">♥</span></div>
     <div class="nav-links">
       <a href="#">Our Story</a>
-      <a href="#">Niki's Garden</a>
+      <!-- Niki's Garden dengan link Instagram -->
+      <a href="https://www.instagram.com/" target="_blank" id="nikisGardenLink">Niki's Garden 🌸</a>
       <a href="#" class="btn-outline" style="padding: 6px 14px;">❤️ Special</a>
     </div>
   </div>
@@ -424,11 +420,11 @@
       <div class="stat-label">Days of Togetherness</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">1205+<span style="font-size:1.2rem;">k</span></div>
+      <div class="stat-number">1205<span style="font-size:1.2rem;">+</span></div>
       <div class="stat-label">Cups of Coffee</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">23+<span style="font-size:1.2rem;">+</span></div>
+      <div class="stat-number">23+<span style="font-size:1.2rem;"></span></div>
       <div class="stat-label">Dates Across the Map</div>
     </div>
     <div class="stat-card">
@@ -446,6 +442,7 @@
       <ul class="feature-list">
         <li><i class="fas fa-check-circle"></i> <strong>✨ All-in-One Memories</strong> – From thousands of miles to cozy dates, we capture everything in one place.</li>
         <li><i class="fas fa-headset"></i> <strong>💬 24/7 Heart Support</strong> – For the sunshine or the storms. I'm just one call away.</li>
+      </ul>
     </div>
     <div class="feature-image">
       <i class="fas fa-heartbeat" style="font-size: 4.5rem; color:#e07a68;"></i>
@@ -453,32 +450,47 @@
     </div>
   </div>
 
-  <h2 class="section-title">💖 Our favorite love spots</h2>
-  <div class="destinations-grid">
-    <div class="dest-card">
-      <div class="dest-icon"><i class="fas fa-umbrella-beach"></i></div>
-      <h4>El Nido Cove</h4>
-      <div class="dest-tag" style="background:#fff0eb; display:inline-block; padding:4px 12px; border-radius:30px; font-size:0.7rem; margin:8px 0;">Sunset Kisses</div>
-      <div class="dest-location" style="font-size:0.8rem;">Palawan, PH • First trip</div>
+  <!-- GALERI FOTO - menggantikan Our Favorite Love Spots -->
+  <h2 class="section-title">💖 Our favorite moments together</h2>
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Foto 1: El Nido -->
+    <div class="gallery-card" onclick="openImageModal(this)">
+      <img src="https://picsum.photos/id/104/400/300" alt="El Nido Paradise" class="gallery-img" onerror="this.src='https://picsum.photos/id/15/400/300'">
+      <div class="gallery-caption">
+        <h4>El Nido Cove</h4>
+        <p>Sunset Kisses • Palawan, PH</p>
+      </div>
     </div>
-    <div class="dest-card">
-      <div class="dest-icon"><i class="fas fa-mountain"></i></div>
-      <h4>Baguio Fog</h4>
-      <div class="dest-tag" style="background:#fff0eb; display:inline-block; padding:4px 12px; border-radius:30px; font-size:0.7rem; margin:8px 0;">Cozy Highlands</div>
-      <div class="dest-location" style="font-size:0.8rem;">Benguet • Anniversary</div>
+    <!-- Foto 2: Baguio -->
+    <div class="gallery-card" onclick="openImageModal(this)">
+      <img src="https://picsum.photos/id/104/400/300" alt="Baguio Fog" class="gallery-img" onerror="this.src='https://picsum.photos/id/96/400/300'">
+      <div class="gallery-caption">
+        <h4>Baguio Fog</h4>
+        <p>Cozy Highlands • Benguet</p>
+      </div>
     </div>
-    <div class="dest-card">
-      <div class="dest-icon"><i class="fas fa-water"></i></div>
-      <h4>Siargao Tide</h4>
-      <div class="dest-tag" style="background:#fff0eb; display:inline-block; padding:4px 12px; border-radius:30px; font-size:0.7rem; margin:8px 0;">Surf & Soul</div>
-      <div class="dest-location" style="font-size:0.8rem;">Cloud 9 • Laughing waves</div>
+    <!-- Foto 3: Siargao -->
+    <div class="gallery-card" onclick="openImageModal(this)">
+      <img src="https://picsum.photos/id/104/400/300" alt="Siargao Tide" class="gallery-img" onerror="this.src='https://picsum.photos/id/127/400/300'">
+      <div class="gallery-caption">
+        <h4>Siargao Tide</h4>
+        <p>Surf & Soul • Cloud 9</p>
+      </div>
     </div>
-    <div class="dest-card">
-      <div class="dest-icon"><i class="fas fa-landmark"></i></div>
-      <h4>Vigan Nostalgia</h4>
-      <div class="dest-tag" style="background:#fff0eb; display:inline-block; padding:4px 12px; border-radius:30px; font-size:0.7rem; margin:8px 0;">Heritage Vibe</div>
-      <div class="dest-location" style="font-size:0.8rem;">Ilocos • vintage romance</div>
+    <!-- Foto 4: Vigan -->
+    <div class="gallery-card" onclick="openImageModal(this)">
+      <img src="https://picsum.photos/id/104/400/300" alt="Vigan Nostalgia" class="gallery-img" onerror="this.src='https://picsum.photos/id/20/400/300'">
+      <div class="gallery-caption">
+        <h4>Vigan Nostalgia</h4>
+        <p>Heritage Vibe • Ilocos</p>
+      </div>
     </div>
+  </div>
+
+  <!-- Modal untuk preview foto besar -->
+  <div id="imageModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; justify-content:center; align-items:center; cursor:pointer;" onclick="closeImageModal()">
+    <img id="modalImg" src="" style="max-width:90%; max-height:90%; border-radius:20px; object-fit:contain;">
+    <div style="position:absolute; top:20px; right:30px; color:white; font-size:30px; cursor:pointer;">&times;</div>
   </div>
 
   <div style="margin: 40px 0 10px;">
@@ -497,13 +509,7 @@
     </div>
   </div>
 
-  <div class="package-cta">
-    <div>
-      <h3>💝 Love Packages (Anniv Special)</h3>
-      <p style="font-size:clamp(0.8rem,3.5vw,0.9rem);">Customizable romantic getaways, staycations & surprise plans.</p>
-    </div>
-    <a href="#" class="btn-primary" style="background:#c55b48;">Browse all packages <i class="fas fa-arrow-right"></i></a>
-  </div>
+  <!-- PACKAGE CTA DIHAPUS -->
 
   <h2 class="section-title center-title" style="text-align: center;">Making memories as easy as 1-2-3</h2>
   <div class="steps-row">
@@ -537,16 +543,12 @@
 </div>
 
 <script>
-  const whatsappNumber = "6282127770375"; // 
-  
-  // Pesan otomatis yang akan terkirim
+  // ========== WHATSAPP CONFIG ==========
+  const whatsappNumber = "6282127770375";
   const whatsappMessage = "halo mamas, ini adek mau titip pesan❤️";
-  
-  // Encode pesan untuk URL
   const encodedMessage = encodeURIComponent(whatsappMessage);
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
   
-  // Untuk button "Send me a note" di hero section
   const whatsappBtn = document.querySelector('.whatsapp-note');
   if (whatsappBtn) {
     whatsappBtn.addEventListener('click', (e) => {
@@ -555,7 +557,6 @@
     });
   }
   
-  // Untuk button "❤️ Special" di navbar (opsional, bisa juga diarahkan ke WhatsApp)
   const specialBtn = document.querySelector('.nav-links .btn-outline');
   if (specialBtn && specialBtn.innerText.includes('❤️ Special')) {
     specialBtn.addEventListener('click', (e) => {
@@ -564,7 +565,6 @@
     });
   }
   
-  // Untuk button "Relive the magic"
   const reliveBtn = document.querySelector('.hero-buttons .btn-primary');
   if (reliveBtn && reliveBtn.innerText.includes('Relive the magic')) {
     reliveBtn.addEventListener('click', (e) => {
@@ -573,13 +573,34 @@
     });
   }
   
-  // Untuk button package
-  const packageBtn = document.querySelector('.package-cta .btn-primary');
-  if (packageBtn) {
-    packageBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      alert('🎁 Special anniversary packages just for us! Let\'s plan something magical 🎁');
-    });
+  // ========== GALERI FOTO MODAL ==========
+  function openImageModal(cardElement) {
+    const img = cardElement.querySelector('.gallery-img');
+    if (img) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modalImg.src = img.src;
+      modal.style.display = 'flex';
+    }
+  }
+  
+  function closeImageModal() {
+    document.getElementById('imageModal').style.display = 'none';
+  }
+  
+  // Escape key untuk close modal
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeImageModal();
+    }
+  });
+  
+  // ========== INSTAGRAM LINK UNTUK NIKI'S GARDEN ==========
+  // GANTI LINK INSTAGRAM DI BAWAH INI DENGAN AKUN INSTAGRAM KAMU
+  const instagramUrl = "https://www.instagram.com/"; // <-- GANTI DENGAN LINK IG KAMU
+  const nikiGardenLink = document.getElementById('nikisGardenLink');
+  if (nikiGardenLink) {
+    nikiGardenLink.href = instagramUrl;
   }
 </script>
 </body>
