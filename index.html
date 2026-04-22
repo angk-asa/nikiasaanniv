@@ -3,146 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Journey | Anniversary</title>
+    <title>Wanderlust of Us | Anniversary</title>
     <style>
-        /* Base Styles ala Apple */
+        /* Base Styles - Clean & Modern */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            background-color: #fbfbfd; 
-            color: #1d1d1f;
-            line-height: 1.5;
+            background-color: #f5f5f7; 
+            color: #1d1d1f; 
+            padding: 50px 20px;
         }
 
-        /* Hero Section */
-        .hero {
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), 
-                        url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070&auto=format&fit=crop'); /* Ganti dengan foto cover kalian */
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            font-weight: 700;
-            letter-spacing: -0.015em;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 24px;
-            color: #515154;
-            max-width: 600px;
-        }
-
-        /* Gallery Grid ala Apple Cards */
+        /* Container - Atur lebar website */
         .container {
-            max-width: 1100px;
-            margin: -100px auto 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 1. SECTION: HERO (FOTO UTAMA BESAR) */
+        .hero-section {
+            margin-bottom: 40px;
+        }
+        .hero-card {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Sesuaikan tinggi sesuai keinginan */
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background-color: #ffffff; /* Fallback background */
+        }
+        .hero-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .hero-card .hero-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1));
+        }
+
+        /* 2. SECTION: INTRO (TULISAN BESAR & SOSIAL MEDIA) */
+        .intro-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
             padding: 0 20px;
         }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+        .intro-text h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .intro-text p {
+            color: #86868b;
+            font-size: 16px;
+        }
+        .intro-social {
+            color: #d63384; /* Warna romantis untuk ikon */
+            font-size: 24px;
         }
 
-        .card {
-            background: white;
+        /* 3. SECTION: THREE CARDS (TIGA FOTO KECIL) */
+        .three-cards-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .card-small {
+            background-color: #ffffff;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
         }
-
-        .card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .card img {
+        .card-small:hover { transform: translateY(-5px); }
+        .card-small img {
             width: 100%;
-            height: 350px;
+            height: 250px;
             object-fit: cover;
         }
+        .card-small-content { padding: 15px; }
+        .card-small h3 { font-size: 18px; margin-bottom: 5px; }
+        .card-small p { color: #86868b; font-size: 14px; }
 
-        .card-content {
+        /* 4. SECTION: TWO LARGE CARDS (DUA FOTO BESAR DI BAWAH) */
+        .two-large-cards-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .card-large {
+            position: relative;
+            background-color: #ffffff;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            height: 350px;
+        }
+        .card-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-large-content {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%;
             padding: 20px;
+            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+            color: #ffffff;
         }
-
-        .card-content h3 {
-            font-size: 21px;
-            margin-bottom: 5px;
-        }
-
-        .card-content p {
-            color: #86868b;
-            font-size: 14px;
-        }
+        .card-large h3 { font-size: 20px; margin-bottom: 5px; }
+        .card-large p { font-size: 14px; color: #f5f5f7; }
 
         /* Footer */
-        footer {
-            text-align: center;
-            padding: 100px 20px;
-            background: #f5f5f7;
-        }
+        footer { text-align: center; margin-top: 50px; color: #d63384; }
 
-        .heart-icon {
-            color: #ff3b30;
-            font-size: 24px;
-            margin-bottom: 10px;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .three-cards-section, .two-large-cards-section {
+                grid-template-columns: 1fr;
+            }
+            .hero-card { height: 250px; }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <h1>WANDERLUST OF US.</h1>
-        <p>Celebrating every chapter of our story.</p>
-    </section>
-
     <div class="container">
-        <div class="gallery-grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1516589174184-c68526674fd6?q=80&w=1974&auto=format&fit=crop" alt="Foto 1">
-                <div class="card-content">
-                    <h3>The Beginning</h3>
-                    <p>Tempat pertama kita bertemu dan memulai segalanya.</p>
-                </div>
-            </div>
 
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=2070&auto=format&fit=crop" alt="Foto 2">
-                <div class="card-content">
-                    <h3>LDR Journey</h3>
-                    <p>Jakarta - Bali bukan halangan buat kita.</p>
-                </div>
+        <section class="hero-section">
+            <div class="hero-card">
+                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070" alt="Foto Utama">
+                <div class="hero-overlay"></div>
             </div>
+        </section>
 
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?q=80&w=2070&auto=format&fit=crop" alt="Foto 3">
-                <div class="card-content">
-                    <h3>Future Dreams</h3>
-                    <p>Membangun masa depan bersama, selangkah demi selangkah.</p>
+        <section class="intro-section">
+            <div class="intro-text">
+                <h1>Mengenang Jejak Kita.</h1>
+                <p>Celebrating another beautiful chapter together.</p>
+            </div>
+            <div class="intro-social">❤️</div> </section>
+
+        <section class="three-cards-section">
+            <div class="card-small">
+                <img src="https://images.unsplash.com/photo-1516589174184-c68526674fd6?q=80&w=1974" alt="Momen 1">
+                <div class="card-small-content">
+                    <h3>Awal Mula</h3>
+                    <p>Tempat kita pertama kali bertemu.</p>
                 </div>
             </div>
-        </div>
+            <div class="card-small">
+                <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=2070" alt="Momen 2">
+                <div class="card-small-content">
+                    <h3>Perjalanan Kita</h3>
+                    <p>Setiap langkah terasa berarti.</p>
+                </div>
+            </div>
+            <div class="card-small">
+                <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?q=80&w=2070" alt="Momen 3">
+                <div class="card-small-content">
+                    <h3>Masa Depan</h3>
+                    <p>Mimpi-mimpi besar menanti.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="two-large-cards-section">
+            <div class="card-large">
+                <img src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=1974" alt="Paket Spesial 1">
+                <div class="card-large-content">
+                    <h3>Special Moment #1</h3>
+                    <p>Celebrating the years we've shared.</p>
+                </div>
+            </div>
+            <div class="card-large">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1974" alt="Paket Spesial 2">
+                <div class="card-large-content">
+                    <h3>Special Moment #2</h3>
+                    <p>Looking forward to many more years.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Happy Anniversary to Nikia.</p>
+        </footer>
+
     </div>
-
-    <footer>
-        <div class="heart-icon">❤️</div>
-        <p>Happy Anniversary, Nikia.</p>
-        <p style="color: #86868b; font-size: 12px; margin-top: 10px;">Created with love using GitHub Pages</p>
-    </footer>
 
 </body>
 </html>
