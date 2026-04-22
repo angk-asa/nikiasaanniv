@@ -222,6 +222,7 @@
       margin-top: 6px;
     }
 
+    /* FEATURE GRID - Teks kiri rata */
     .feature-grid {
       display: flex;
       flex-wrap: wrap;
@@ -229,7 +230,12 @@
       margin: 50px 0;
       align-items: center;
     }
-    .feature-text, .feature-image {
+    .feature-text {
+      flex: 1;
+      min-width: 250px;
+      text-align: left; /* Rata kiri */
+    }
+    .feature-image {
       flex: 1;
       min-width: 250px;
     }
@@ -247,6 +253,15 @@
     .feature-text h3 {
       font-size: clamp(1.4rem, 5vw, 1.8rem);
       margin-bottom: 14px;
+      text-align: left;
+    }
+    .feature-text p {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .feature-list {
+      list-style: none;
+      text-align: left;
     }
     .feature-list li {
       margin-bottom: 14px;
@@ -254,20 +269,63 @@
       gap: 10px;
       align-items: flex-start;
       font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+      text-align: left;
     }
-    .feature-image {
+
+    /* MUSIC PLAYER STYLES - menggantikan feature-image lama */
+    .music-player {
       background: linear-gradient(145deg, #ffe4db, #ffd3c8);
       border-radius: 40px;
-      padding: 30px 15px;
+      padding: 30px 20px;
       text-align: center;
-      min-height: 240px;
+      min-height: 300px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
+    .music-icon {
+      font-size: 4rem;
+      color: #e07a68;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .music-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #5e3a32;
+      margin-bottom: 8px;
+    }
+    .music-artist {
+      font-size: 0.85rem;
+      color: #a07b6e;
+      margin-bottom: 20px;
+    }
+    audio {
+      width: 100%;
+      max-width: 260px;
+      margin-top: 10px;
+      border-radius: 30px;
+    }
+    audio::-webkit-media-controls-panel {
+      background-color: #ffefea;
+    }
+    .music-note {
+      font-size: 0.7rem;
+      color: #bc8a7a;
+      margin-top: 15px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
 
-    /* Gallery Styles - menggantikan destinations */
+    /* Gallery Styles */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -305,16 +363,6 @@
     .gallery-caption p {
       font-size: 0.8rem;
       color: #a07b6e;
-    }
-    /* fallback jika gambar tidak ada, pakai placeholder warna */
-    .gallery-placeholder {
-      background: linear-gradient(145deg, #ffe0d6, #ffcdc2);
-      height: 260px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: #e07a68;
     }
 
     .journey-cards {
@@ -392,8 +440,7 @@
     <div class="logo">NIKI<span style="font-size:0.9rem;">♥</span></div>
     <div class="nav-links">
       <a href="#">Our Story</a>
-      <!-- Niki's Garden dengan link Instagram -->
-      <a href="https://www.instagram.com/" target="_blank" id="nikisGardenLink">Niki's Garden 🌸</a>
+      <a href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDg3MDUzNzY1MzEwMzYw?story_media_id=3425149991499918600&igsh=MWIwbTN2cXJjejRpeg==" target="_blank" id="nikisGardenLink">Niki's Garden 🌸</a>
       <a href="#" class="btn-outline" style="padding: 6px 14px;">❤️ Special</a>
     </div>
   </div>
@@ -433,6 +480,7 @@
     </div>
   </div>
 
+  <!-- FEATURE GRID dengan Music Player di kanan -->
   <div class="feature-grid">
     <div class="feature-text">
       <div class="feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
@@ -444,16 +492,32 @@
         <li><i class="fas fa-headset"></i> <strong>💬 24/7 Heart Support</strong> – For the sunshine or the storms. I'm just one call away.</li>
       </ul>
     </div>
-    <div class="feature-image">
-      <i class="fas fa-heartbeat" style="font-size: 4.5rem; color:#e07a68;"></i>
-      <div style="margin-top: 16px; font-weight: 500;">our <br> eternal compass</div>
+    
+    <!-- MUSIC PLAYER - menggantikan eternal compass -->
+    <div class="music-player">
+      <div class="music-icon">
+        <i class="fas fa-headphones"></i>
+      </div>
+      <div class="music-title">Our Song</div>
+      <div class="music-artist">For you, my love ♫</div>
+      
+      <!-- GANTI LINK MP3 DI BAWAH INI dengan file lagu kamu -->
+      <audio controls autoplay loop id="annivAudio">
+        <source src="https://open.spotify.com/track/2kJMPjf1stbTEy0ZEOeTxf?si=cb77063faeaa479b" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <div class="music-note">
+        <i class="fas fa-heart" style="font-size:0.6rem;"></i>
+        <span>Our anniversary playlist</span>
+        <i class="fas fa-heart" style="font-size:0.6rem;"></i>
+      </div>
     </div>
   </div>
 
-  <!-- GALERI FOTO - menggantikan Our Favorite Love Spots -->
+  <!-- GALERI FOTO -->
   <h2 class="section-title">💖 Our favorite moments together</h2>
   <div class="gallery-grid" id="galleryGrid">
-    <!-- Foto 1: El Nido -->
     <div class="gallery-card" onclick="openImageModal(this)">
       <img src="https://picsum.photos/id/104/400/300" alt="El Nido Paradise" class="gallery-img" onerror="this.src='https://picsum.photos/id/15/400/300'">
       <div class="gallery-caption">
@@ -461,7 +525,6 @@
         <p>Sunset Kisses • Palawan, PH</p>
       </div>
     </div>
-    <!-- Foto 2: Baguio -->
     <div class="gallery-card" onclick="openImageModal(this)">
       <img src="https://picsum.photos/id/104/400/300" alt="Baguio Fog" class="gallery-img" onerror="this.src='https://picsum.photos/id/96/400/300'">
       <div class="gallery-caption">
@@ -469,7 +532,6 @@
         <p>Cozy Highlands • Benguet</p>
       </div>
     </div>
-    <!-- Foto 3: Siargao -->
     <div class="gallery-card" onclick="openImageModal(this)">
       <img src="https://picsum.photos/id/104/400/300" alt="Siargao Tide" class="gallery-img" onerror="this.src='https://picsum.photos/id/127/400/300'">
       <div class="gallery-caption">
@@ -477,7 +539,6 @@
         <p>Surf & Soul • Cloud 9</p>
       </div>
     </div>
-    <!-- Foto 4: Vigan -->
     <div class="gallery-card" onclick="openImageModal(this)">
       <img src="https://picsum.photos/id/104/400/300" alt="Vigan Nostalgia" class="gallery-img" onerror="this.src='https://picsum.photos/id/20/400/300'">
       <div class="gallery-caption">
@@ -487,7 +548,7 @@
     </div>
   </div>
 
-  <!-- Modal untuk preview foto besar -->
+  <!-- Modal preview foto -->
   <div id="imageModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; justify-content:center; align-items:center; cursor:pointer;" onclick="closeImageModal()">
     <img id="modalImg" src="" style="max-width:90%; max-height:90%; border-radius:20px; object-fit:contain;">
     <div style="position:absolute; top:20px; right:30px; color:white; font-size:30px; cursor:pointer;">&times;</div>
@@ -508,8 +569,6 @@
       <p>Cool breeze and hand-in-hand walks through pine forests. A perfect escape for our next anniv.</p>
     </div>
   </div>
-
-  <!-- PACKAGE CTA DIHAPUS -->
 
   <h2 class="section-title center-title" style="text-align: center;">Making memories as easy as 1-2-3</h2>
   <div class="steps-row">
@@ -588,17 +647,25 @@
     document.getElementById('imageModal').style.display = 'none';
   }
   
-  // Escape key untuk close modal
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeImageModal();
     }
   });
   
-  const instagramUrl = "https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDg3MDUzNzY1MzEwMzYw?story_media_id=3425149991499918600&igsh=MWIwbTN2cXJjejRpeg=="; // 
-  const nikiGardenLink = document.getElementById('nikisGardenLink');
-  if (nikiGardenLink) {
-    nikiGardenLink.href = instagramUrl;
+  // ========== AUTO PLAY MUSIC (perlu interaksi user dulu) ==========
+  // Beberapa browser blokir autoplay, jadi kita coba play setelah user klik anywhere
+  const audio = document.getElementById('annivAudio');
+  if (audio) {
+    // Coba play otomatis
+    audio.play().catch(e => {
+      console.log('Autoplay blocked. User needs to interact first.');
+      // Tambahin event listener sekali klik untuk play
+      document.body.addEventListener('click', function playOnce() {
+        audio.play();
+        document.body.removeEventListener('click', playOnce);
+      }, { once: true });
+    });
   }
 </script>
 </body>
