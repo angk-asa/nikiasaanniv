@@ -366,24 +366,252 @@
       margin: 10px 0 6px;
     }
 
-    .steps-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin: 45px 0;
+    /* ========== SURAT PANJANG - ESTETIK ========== */
+    .letter-container {
+      margin: 60px 0 40px;
+      position: relative;
     }
-    .step {
+    
+    .letter-decoration {
       text-align: center;
-      background: white;
-      padding: 24px 16px;
-      border-radius: 36px;
-      border: 1px solid #ffe0d6;
+      margin-bottom: 20px;
+      color: #ffb7b2;
+      font-size: 1rem;
+      letter-spacing: 10px;
     }
-    .step-number {
-      width: 48px;
-      height: 48px;
-      font-size: 1.5rem;
-      margin: 0 auto 14px;
+    
+    .letter-paper {
+      background: #fffef7;
+      border-radius: 32px;
+      padding: 50px 40px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.03);
+      border: 1px solid #ffe0d6;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    
+    .letter-paper:hover {
+      transform: translateY(-5px);
+    }
+    
+    .letter-paper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, transparent 50%, #ffe0d6 50%);
+      border-radius: 0 32px 0 0;
+    }
+    
+    .letter-header {
+      text-align: center;
+      margin-bottom: 35px;
+      border-bottom: 2px dashed #ffd3c8;
+      padding-bottom: 20px;
+    }
+    
+    .letter-header i {
+      font-size: 2.5rem;
+      color: #e07a68;
+      margin-bottom: 10px;
+    }
+    
+    .letter-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 5vw, 2rem);
+      color: #c45c4a;
+      margin: 10px 0;
+    }
+    
+    .letter-date {
+      font-size: 0.8rem;
+      color: #bc8a7a;
+      letter-spacing: 2px;
+    }
+    
+    .letter-content {
+      max-height: 500px;
+      overflow-y: auto;
+      padding-right: 15px;
+      line-height: 1.8;
+    }
+    
+    .letter-content::-webkit-scrollbar {
+      width: 5px;
+    }
+    .letter-content::-webkit-scrollbar-track {
+      background: #ffe0d6;
+      border-radius: 10px;
+    }
+    .letter-content::-webkit-scrollbar-thumb {
+      background: #ffb7b2;
+      border-radius: 10px;
+    }
+    
+    .letter-content p {
+      margin-bottom: 20px;
+      font-size: clamp(0.95rem, 4vw, 1rem);
+      color: #4a3b36;
+      text-align: justify;
+    }
+    
+    .letter-content p:first-of-type {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    
+    .letter-signature {
+      margin-top: 35px;
+      padding-top: 20px;
+      border-top: 1px solid #ffd3c8;
+      font-style: italic;
+      text-align: right;
+    }
+    
+    .letter-signature span {
+      font-size: 0.9rem;
+      color: #a07b6e;
+    }
+    
+    .letter-signature strong {
+      font-size: 1.1rem;
+      color: #e07a68;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .letter-footer {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #ffd3c8;
+      font-size: 0.8rem;
+      color: #bc8a7a;
+    }
+    
+    .letter-footer i {
+      margin: 0 8px;
+      color: #ff8a7a;
+    }
+    
+    .letter-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .btn-letter {
+      background: #ff8a7a;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-letter:hover {
+      background: #f06e5e;
+      transform: translateY(-2px);
+    }
+    
+    .btn-letter-outline {
+      background: transparent;
+      border: 2px solid #ffb7b2;
+      color: #5e3a32;
+      padding: 10px 26px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-letter-outline:hover {
+      background: #ffefec;
+      border-color: #ff8a7a;
+      transform: translateY(-2px);
+    }
+    
+    .surprise-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .surprise-modal.active {
+      display: flex;
+    }
+    
+    .surprise-content {
+      background: linear-gradient(135deg, #fff5f0, #fffaf7);
+      border-radius: 48px;
+      padding: 40px;
+      max-width: 400px;
+      text-align: center;
+      animation: bounceIn 0.4s ease;
+    }
+    
+    @keyframes bounceIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      80% { transform: scale(1.05); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .surprise-content i {
+      font-size: 4rem;
+      color: #ff8a7a;
+      margin-bottom: 20px;
+    }
+    
+    .surprise-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    
+    .surprise-content p {
+      margin-bottom: 25px;
+      color: #6b4e44;
+    }
+    
+    .close-surprise {
+      background: #ff8a7a;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 40px;
+      cursor: pointer;
+    }
+    
+    @media (max-width: 640px) {
+      .letter-paper {
+        padding: 30px 20px;
+      }
+      .letter-content {
+        max-height: 400px;
+      }
+      .btn-letter, .btn-letter-outline {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+      }
     }
 
     .love-note {
@@ -486,8 +714,8 @@
         </div>
         <div class="video-title">Our favorite anthem</div>
         
-        <video controls width="100%" poster="https://via.placeholder.com/400x240/ffe4db/e07a68?text=Our+Video">
-          <source src="https://drive.google.com/file/d/1OWtE_E0bvDZVvoC1MenuEh7O4XO60UJw/view?usp=sharing" type="video/mp4">
+        <video controls width="100%">
+          <source src="https://drive.google.com/uc?export=download&id=1OWtE_E0bvDZVvoC1MenuEh7O4XO60UJw" type="video/mp4">
           Your browser does not support the video tag.
         </video>
         
@@ -555,22 +783,57 @@
     </div>
   </div>
 
-  <h2 class="section-title center-title" style="text-align: center;">Making memories as easy as 1-2-3</h2>
-  <div class="steps-row">
-    <div class="step">
-      <div class="step-number">1</div>
-      <h3 style="font-size:clamp(1.1rem,4vw,1.3rem);">Pick a dream</h3>
-      <p style="font-size:clamp(0.8rem,3.5vw,0.9rem);">Choose from our handpicked romantic escapes or recreate your favorite date.</p>
+  <!-- ========== SURAT PANJANG (menggantikan steps & love note sebelumnya) ========== -->
+  <div class="letter-container">
+    <div class="letter-decoration">
+      <i class="fas fa-heart"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-heart"></i>
     </div>
-    <div class="step">
-      <div class="step-number">2</div>
-      <h3 style="font-size:clamp(1.1rem,4vw,1.3rem);">Add personal spark</h3>
-      <p style="font-size:clamp(0.8rem,3.5vw,0.9rem);">Customize with surprises, flowers, or a secret message from the heart.</p>
+    
+    <div class="letter-paper">
+      <div class="letter-header">
+        <i class="fas fa-envelope-open-text"></i>
+        <h2>A Letter for You, My Love</h2>
+        <div class="letter-date">Three Years & Forever • 2026</div>
+      </div>
+      
+      <div class="letter-content" id="loveLetter">
+        <p>My dearest Niki,</p>
+        
+        <p>Three years. It feels like just yesterday when I first saw your smile, and yet I can't imagine a single day of my life without you in it. You've turned my world into something I never knew I needed — brighter, warmer, and full of meaning.</p>
+        
+        <p>I still remember the way you laugh at your own jokes, how your eyes light up when you talk about the things you love, and the comfort of just being beside you in complete silence. Those small, ordinary moments are the ones I treasure the most.</p>
+        
+        <p>We've been through storms and sunny days, crossed oceans and climbed mountains — both literally and figuratively. And through it all, you've been my anchor, my home, and my greatest adventure.</p>
+        
+        <p>There's a version of me that existed before you, and then there's the person I am now — someone who loves deeper, dreams bigger, and believes in forever because of you.</p>
+        
+        <p>I don't know what the next three years will bring, but I know one thing for sure: I want to spend every single one of them with you. More sunsets, more road trips, more lazy Sundays, and more of your hand in mine.</p>
+        
+        <p>Thank you for choosing me, every single day. Thank you for your patience, your warmth, and for making me feel like the luckiest person in the world.</p>
+        
+        <p>You are my home. You are my always.</p>
+        
+        <p class="letter-signature">
+          With all my love,<br>
+          <span>Yours forever,</span><br>
+          <strong>Angkasa ✨</strong>
+        </p>
+      </div>
+      
+      <div class="letter-footer">
+        <i class="fas fa-heart"></i> Every word is for you <i class="fas fa-heart"></i>
+      </div>
     </div>
-    <div class="step">
-      <div class="step-number">3</div>
-      <h3 style="font-size:clamp(1.1rem,4vw,1.3rem);">Cherish forever</h3>
-      <p style="font-size:clamp(0.8rem,3.5vw,0.9rem);">We help arrange the details — you just create beautiful memories together.</p>
+    
+    <div class="letter-buttons">
+      <button class="btn-letter" id="surpriseBtn">
+        <i class="fas fa-gift"></i> A little surprise for you
+      </button>
+      <button class="btn-letter-outline" id="shareLoveBtn">
+        <i class="fas fa-share-alt"></i> Share this moment
+      </button>
     </div>
   </div>
 
@@ -633,6 +896,57 @@
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeImageModal();
+    }
+  });
+  
+  // ========== SURPRISE BUTTON & SHARE ==========
+  // Buat modal surprise
+  const surpriseModal = document.createElement('div');
+  surpriseModal.className = 'surprise-modal';
+  surpriseModal.innerHTML = `
+    <div class="surprise-content">
+      <i class="fas fa-heartbeat"></i>
+      <h3>💕 You're my everything!</h3>
+      <p>Three years, thousands of memories, and a lifetime of love to go. You make every day feel like a celebration.</p>
+      <p style="font-size:0.9rem;">"In a sea of people, my eyes will always search only for you."</p>
+      <button class="close-surprise">Close</button>
+    </div>
+  `;
+  document.body.appendChild(surpriseModal);
+  
+  const surpriseBtn = document.getElementById('surpriseBtn');
+  if (surpriseBtn) {
+    surpriseBtn.addEventListener('click', () => {
+      surpriseModal.classList.add('active');
+    });
+  }
+  
+  const shareLoveBtn = document.getElementById('shareLoveBtn');
+  if (shareLoveBtn) {
+    shareLoveBtn.addEventListener('click', () => {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Our Anniversary Letter',
+          text: 'I just read the sweetest letter from my love! 💕',
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        alert('Copy this link to share: ' + window.location.href);
+      }
+    });
+  }
+  
+  // Close modal
+  const closeSurpriseBtn = surpriseModal.querySelector('.close-surprise');
+  if (closeSurpriseBtn) {
+    closeSurpriseBtn.addEventListener('click', () => {
+      surpriseModal.classList.remove('active');
+    });
+  }
+  
+  surpriseModal.addEventListener('click', (e) => {
+    if (e.target === surpriseModal) {
+      surpriseModal.classList.remove('active');
     }
   });
 </script>
