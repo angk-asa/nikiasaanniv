@@ -2,411 +2,372 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>Niki's Garden - Our Memory Collection</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Niki's Garden 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --blush: #FFF0EB;
+      --rose: #F9947E;
+      --deep-rose: #c45c4a;
+      --text: #3d2b25;
+      --text-muted: #a07b6e;
+      --border: #FFCFC7;
+      --card-bg: #ffffff;
     }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #FFF5F0;
-      font-family: 'Inter', sans-serif;
-      color: #4a3b36;
-      line-height: 1.5;
+      background: var(--blush);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
     }
 
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    /* Header sederhana */
-    .garden-header {
-      padding: 30px 0 20px;
+    /* ── HEADER ── */
+    .header {
       text-align: center;
-      border-bottom: 1px solid #FFBEB5;
-      margin-bottom: 30px;
+      padding: 36px 20px 24px;
     }
-    .garden-header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 6vw, 2.5rem);
-      color: #c45c4a;
-      margin-bottom: 8px;
+    .header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 6vw, 3rem);
+      color: var(--deep-rose);
+      letter-spacing: -0.5px;
     }
-    .garden-header p {
-      color: #a07b6e;
-      font-size: 0.9rem;
-    }
-    .back-home {
-      display: inline-block;
-      margin-top: 15px;
-      color: #F9947E;
-      text-decoration: none;
-      font-weight: 500;
+    .header p {
+      color: var(--text-muted);
       font-size: 0.85rem;
-    }
-    .back-home:hover {
-      color: #c45c4a;
+      margin-top: 6px;
+      font-weight: 300;
     }
 
-    /* ========== PINTEREST MASONRY GRID ========== */
-    /* Menggunakan CSS Grid dengan row dinamis untuk efek masonry */
-    .pinterest-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 16px;
-      margin: 20px 0 50px;
+    /* ── SEARCH BAR ── */
+    .search-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 0 16px 20px;
     }
-    
-    /* Responsive column count - dinamis sesuai layar */
-    @media (min-width: 1200px) {
-      .pinterest-gallery {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    @media (min-width: 768px) and (max-width: 1199px) {
-      .pinterest-gallery {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (min-width: 480px) and (max-width: 767px) {
-      .pinterest-gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-    }
-    @media (max-width: 479px) {
-      .pinterest-gallery {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-    }
-    
-    .pin-card {
+    .search-wrap input {
+      width: 100%;
+      max-width: 380px;
+      padding: 10px 18px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
       background: white;
-      border-radius: 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-wrap input:focus { border-color: var(--rose); }
+    .search-wrap input::placeholder { color: var(--text-muted); }
+
+    /* ── MASONRY GRID — True Pinterest-style ── */
+    /*
+      Trick: columns CSS property membuat masonry native.
+      Tidak pakai Grid/Flexbox — pakai column-count + break-inside: avoid.
+      Ini cara paling reliable untuk masonry di semua browser.
+    */
+    .masonry {
+      columns: 4 200px;   /* max 4 kolom, min lebar 200px per kolom */
+      column-gap: 14px;
+      padding: 4px 14px 60px;
+    }
+
+    /* Responsif kolom */
+    @media (max-width: 900px) { .masonry { columns: 3 160px; } }
+    @media (max-width: 600px) { .masonry { columns: 2 140px; column-gap: 10px; padding: 4px 10px 60px; } }
+    @media (max-width: 340px) { .masonry { columns: 1; } }
+
+    /* ── PIN CARD ── */
+    .pin {
+      break-inside: avoid;          /* jangan potong card di tengah kolom */
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      margin-bottom: 14px;
+      background: var(--card-bg);
+      border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      break-inside: avoid;
+      transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s;
+      box-shadow: 0 2px 8px rgba(196,92,74,0.07);
+      display: inline-block;        /* penting! agar columns bekerja */
+      width: 100%;
     }
-    
-    .pin-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    @media (max-width: 600px) { .pin { margin-bottom: 10px; border-radius: 14px; } }
+
+    .pin:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 12px 28px rgba(196,92,74,0.15);
     }
-    
-    .pin-card img {
+
+    .pin img {
       width: 100%;
       display: block;
       object-fit: cover;
-    }
-    
-    /* Setiap gambar punya tinggi berbeda (random) untuk efek Pinterest */
-    .pin-card img[data-height="tall"] {
-      aspect-ratio: 3/4;
-    }
-    .pin-card img[data-height="short"] {
-      aspect-ratio: 4/3;
-    }
-    .pin-card img[data-height="wide"] {
-      aspect-ratio: 16/9;
-    }
-    .pin-card img[data-height="square"] {
-      aspect-ratio: 1/1;
-    }
-    .pin-card img[data-height="very-tall"] {
-      aspect-ratio: 2/3;
-    }
-    
-    .pin-caption {
-      padding: 12px 14px;
-      font-size: 0.85rem;
-      color: #6f4e42;
-      background: white;
-    }
-    .pin-caption i {
-      color: #F9947E;
-      margin-right: 5px;
-    }
-    .pin-date {
-      font-size: 0.7rem;
-      color: #bc8a7a;
-      margin-top: 6px;
+      /* Tinggi gambar natural = efek Pinterest otomatis */
     }
 
-    /* Modal Preview */
-    .modal-preview {
+    .pin-info {
+      padding: 10px 12px 13px;
+    }
+    .pin-caption {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .pin-date {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 300;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
-      z-index: 1000;
+      inset: 0;
+      background: rgba(30,10,8,0.88);
+      z-index: 999;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
+      padding: 20px;
+      backdrop-filter: blur(6px);
     }
-    .modal-preview.active {
-      display: flex;
-    }
-    .modal-content {
-      max-width: 90%;
-      max-height: 90%;
+    .modal-overlay.open { display: flex; }
+
+    .modal-card {
       background: white;
       border-radius: 24px;
       overflow: hidden;
-      position: relative;
-    }
-    .modal-content img {
-      max-width: 100%;
-      max-height: 80vh;
-      display: block;
-    }
-    .modal-caption {
-      padding: 15px 20px;
-      background: white;
-    }
-    .close-modal {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 30px;
-      color: white;
-      background: rgba(0,0,0,0.5);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+      max-width: 480px;
+      width: 100%;
+      max-height: 90vh;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: 0.2s;
+      flex-direction: column;
+      position: relative;
+      animation: modalIn 0.25s cubic-bezier(.34,1.56,.64,1);
     }
-    .close-modal:hover {
-      background: rgba(0,0,0,0.8);
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
     }
 
+    .modal-card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      max-height: 65vh;
+    }
+
+    .modal-bottom {
+      padding: 16px 20px;
+      flex-shrink: 0;
+    }
+    .modal-bottom .caption { font-weight: 500; font-size: 0.9rem; color: var(--text); }
+    .modal-bottom .date    { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+
+    .modal-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+    }
+    .nav-btn {
+      background: var(--blush);
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      color: var(--deep-rose);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .nav-btn:hover { background: #ffe4de; }
+    .nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+    .modal-counter {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px; right: 14px;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.45);
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+      line-height: 1;
+    }
+    .modal-close:hover { background: rgba(0,0,0,0.7); }
+
+    /* ── EMPTY STATE ── */
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    /* ── FOOTER ── */
     footer {
       text-align: center;
-      padding: 30px;
-      border-top: 1px solid #FFBEB5;
-      color: #bc8a7a;
-      font-size: 0.8rem;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
+    footer span { color: var(--rose); }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="garden-header">
-    <h1>🌸 Niki's Garden 🌸</h1>
-    <p>Every photo tells our story</p>
-    <a href="#" onclick="history.back(); return false;" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
-  </div>
-
-  <!-- Pinterest Masonry Gallery - langsung tampil, tanpa filter -->
-  <div class="pinterest-gallery" id="galleryContainer">
-    <!-- Gallery akan diisi JavaScript -->
-  </div>
-
-  <footer>
-    <p><i class="fas fa-heart" style="color:#F9947E;"></i> Every moment with you is worth remembering</p>
-  </footer>
+<div class="header">
+  <h1>Niki's Garden</h1>
+  <p>Every photo tells our story ✦</p>
 </div>
 
-<!-- Modal Preview -->
-<div id="modalPreview" class="modal-preview" onclick="closeModal()">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <div class="close-modal" onclick="closeModal()">&times;</div>
-    <img id="modalImage" src="" alt="">
-    <div class="modal-caption" id="modalCaption"></div>
+<div class="search-wrap">
+  <input type="text" id="searchInput" placeholder="Cari kenangan..." oninput="filterPhotos()">
+</div>
+
+<!-- Masonry Gallery -->
+<div class="masonry" id="gallery"></div>
+<div class="empty" id="emptyState">Tidak ada foto yang cocok 🌸</div>
+
+<footer><span>♥</span> Every moment with you is worth remembering</footer>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-card" id="modalCard">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <img id="modalImg" src="" alt="">
+    <div class="modal-bottom">
+      <div class="caption" id="modalCaption"></div>
+      <div class="date"    id="modalDate"></div>
+      <div class="modal-nav">
+        <button class="nav-btn" id="btnPrev" onclick="navigate(-1)">← Sebelumnya</button>
+        <span class="modal-counter" id="modalCounter"></span>
+        <button class="nav-btn" id="btnNext" onclick="navigate(1)">Berikutnya →</button>
+      </div>
+    </div>
   </div>
 </div>
 
 <script>
-  // ========== DATA FOTO (GANTI DENGAN FOTO KAMU) ==========
-  const photos = [
-    {
-      url: "https://picsum.photos/id/104/400/500",
-      caption: "Sunset di El Nido 🌅",
-      date: "March 2024",
-      height: "tall"
-    },
-    {
-      url: "https://picsum.photos/id/15/400/300",
-      caption: "Jalan-jalan di Baguio 🍓",
-      date: "December 2023",
-      height: "short"
-    },
-    {
-      url: "https://picsum.photos/id/96/400/450",
-      caption: "Surfing di Siargao 🏄‍♀️",
-      date: "August 2024",
-      height: "tall"
-    },
-    {
-      url: "https://picsum.photos/id/20/400/350",
-      caption: "Jejak romantis di Vigan 🛺",
-      date: "February 2024",
-      height: "short"
-    },
-    {
-      url: "https://picsum.photos/id/127/400/400",
-      caption: "Cafe hopping di Jakarta ☕",
-      date: "January 2024",
-      height: "square"
-    },
-    {
-      url: "https://picsum.photos/id/169/400/550",
-      caption: "Sunrise di Gunung 🏔️",
-      date: "July 2024",
-      height: "tall"
-    },
-    {
-      url: "https://picsum.photos/id/26/400/380",
-      caption: "Jalan-jalan santai 🚶‍♀️",
-      date: "September 2024",
-      height: "short"
-    },
-    {
-      url: "https://picsum.photos/id/28/400/420",
-      caption: "Pantai pasir putih 🏖️",
-      date: "May 2024",
-      height: "tall"
-    },
-    {
-      url: "https://picsum.photos/id/42/400/480",
-      caption: "Momen spesial kita ✨",
-      date: "October 2024",
-      height: "tall"
-    },
-    {
-      url: "https://picsum.photos/id/58/400/340",
-      caption: "Makan malam romantis 🍽️",
-      date: "November 2024",
-      height: "short"
-    },
-    {
-      url: "https://picsum.photos/id/29/400/450",
-      caption: "Coffeeshop aesthetic 🫶",
-      date: "December 2024",
-      height: "tall"
-    },
-    {
-      url: "https://picsum.photos/id/33/400/400",
-      caption: "Taman kota yang asik",
-      date: "February 2025",
-      height: "square"
-    },
-    {
-      url: "https://picsum.photos/id/106/400/600",
-      caption: "Bunga-bunga di taman 🌻",
-      date: "January 2025",
-      height: "very-tall"
-    },
-    {
-      url: "https://picsum.photos/id/116/400/350",
-      caption: "Jalan-jalan sore 🌆",
-      date: "March 2025",
-      height: "short"
-    },
-    {
-      url: "https://picsum.photos/id/22/400/500",
-      caption: "Kopi pagi bersama ☕",
-      date: "April 2025",
-      height: "tall"
-    }
-  ];
+/* ======================================================
+   DATA FOTO
+   Ganti url, caption, dan date sesuai foto kamu.
+   Tinggi gambar natural = efek masonry otomatis!
+====================================================== */
+const photos = [
+  { url: "https://picsum.photos/id/104/400/530", caption: "Sunset di El Nido 🌅",         date: "March 2024" },
+  { url: "https://picsum.photos/id/15/400/280",  caption: "Jalan-jalan di Baguio 🍓",     date: "December 2023" },
+  { url: "https://picsum.photos/id/96/400/480",  caption: "Surfing di Siargao 🏄",        date: "August 2024" },
+  { url: "https://picsum.photos/id/20/400/320",  caption: "Jejak romantis di Vigan 🛺",   date: "February 2024" },
+  { url: "https://picsum.photos/id/127/400/400", caption: "Cafe hopping di Jakarta ☕",   date: "January 2024" },
+  { url: "https://picsum.photos/id/169/400/560", caption: "Sunrise di Gunung 🏔️",        date: "July 2024" },
+  { url: "https://picsum.photos/id/26/400/360",  caption: "Jalan-jalan santai 🚶",        date: "September 2024" },
+  { url: "https://picsum.photos/id/28/400/440",  caption: "Pantai pasir putih 🏖️",       date: "May 2024" },
+  { url: "https://picsum.photos/id/42/400/500",  caption: "Momen spesial kita ✨",        date: "October 2024" },
+  { url: "https://picsum.photos/id/58/400/300",  caption: "Makan malam romantis 🍽️",     date: "November 2024" },
+  { url: "https://picsum.photos/id/29/400/460",  caption: "Coffeeshop aesthetic 🫶",      date: "December 2024" },
+  { url: "https://picsum.photos/id/33/400/400",  caption: "Taman kota yang asik 🌿",     date: "February 2025" },
+  { url: "https://picsum.photos/id/106/400/600", caption: "Bunga-bunga di taman 🌻",     date: "January 2025" },
+  { url: "https://picsum.photos/id/116/400/340", caption: "Jalan-jalan sore 🌆",          date: "March 2025" },
+  { url: "https://picsum.photos/id/22/400/520",  caption: "Kopi pagi bersama ☕",         date: "April 2025" },
+  { url: "https://picsum.photos/id/10/400/380",  caption: "Road trip seru 🚗",            date: "May 2025" },
+  { url: "https://picsum.photos/id/37/400/460",  caption: "Kamu dan hujan 🌧️",           date: "June 2025" },
+  { url: "https://picsum.photos/id/48/400/320",  caption: "Piknik sore hari 🧺",         date: "July 2025" },
+];
 
-  let currentIndex = 0;
-  let currentPhotos = [...photos];
+let filtered = [...photos];
+let currentIdx = 0;
 
-  // Render gallery dengan grid masonry
-  function renderGallery() {
-    const galleryContainer = document.getElementById('galleryContainer');
-    galleryContainer.innerHTML = '';
-    
-    currentPhotos.forEach((photo, index) => {
-      const pin = document.createElement('div');
-      pin.className = 'pin-card';
-      pin.onclick = () => openModal(index);
-      
-      pin.innerHTML = `
-        <img src="${photo.url}" alt="${photo.caption}" data-height="${photo.height}" loading="lazy" 
-             style="aspect-ratio: ${getAspectRatio(photo.height)}">
-        <div class="pin-caption">
-          <i class="fas fa-heart"></i> ${photo.caption}
-          <div class="pin-date"><i class="far fa-calendar-alt"></i> ${photo.date}</div>
-        </div>
-      `;
-      galleryContainer.appendChild(pin);
-    });
-  }
-  
-  function getAspectRatio(height) {
-    switch(height) {
-      case 'tall': return '3/4';
-      case 'short': return '4/3';
-      case 'wide': return '16/9';
-      case 'square': return '1/1';
-      case 'very-tall': return '2/3';
-      default: return '3/4';
-    }
-  }
+/* ── RENDER GALLERY ── */
+function renderGallery(list) {
+  const gallery = document.getElementById('gallery');
+  const empty   = document.getElementById('emptyState');
 
-  // Modal functions
-  function openModal(index) {
-    currentIndex = index;
-    const photo = currentPhotos[currentIndex];
-    const modal = document.getElementById('modalPreview');
-    const modalImg = document.getElementById('modalImage');
-    const modalCaption = document.getElementById('modalCaption');
-    
-    modalImg.src = photo.url;
-    modalCaption.innerHTML = `
-      <i class="fas fa-heart" style="color:#F9947E;"></i> ${photo.caption}<br>
-      <small style="color:#bc8a7a;"><i class="far fa-calendar-alt"></i> ${photo.date}</small>
-    `;
-    modal.classList.add('active');
+  if (list.length === 0) {
+    gallery.innerHTML = '';
+    empty.style.display = 'block';
+    return;
   }
-  
-  function closeModal() {
-    document.getElementById('modalPreview').classList.remove('active');
-  }
-  
-  // Navigasi dengan arrow keys di modal
-  function nextImage() {
-    if (currentIndex < currentPhotos.length - 1) {
-      openModal(currentIndex + 1);
-    }
-  }
-  
-  function prevImage() {
-    if (currentIndex > 0) {
-      openModal(currentIndex - 1);
-    }
-  }
-  
-  document.addEventListener('keydown', (e) => {
-    if (document.getElementById('modalPreview').classList.contains('active')) {
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
-      if (e.key === 'Escape') closeModal();
-    }
-  });
-  
-  // Initialize
-  renderGallery();
+  empty.style.display = 'none';
+
+  gallery.innerHTML = list.map((p, i) => `
+    <div class="pin" onclick="openModal(${i})" role="button" tabindex="0"
+         onkeydown="if(event.key==='Enter')openModal(${i})">
+      <img src="${p.url}" alt="${p.caption}" loading="lazy">
+      <div class="pin-info">
+        <div class="pin-caption">${p.caption}</div>
+        <div class="pin-date">${p.date}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ── SEARCH / FILTER ── */
+function filterPhotos() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  filtered = photos.filter(p =>
+    p.caption.toLowerCase().includes(q) || p.date.toLowerCase().includes(q)
+  );
+  renderGallery(filtered);
+}
+
+/* ── MODAL ── */
+function openModal(idx) {
+  currentIdx = idx;
+  const p = filtered[idx];
+  document.getElementById('modalImg').src        = p.url;
+  document.getElementById('modalCaption').textContent = p.caption;
+  document.getElementById('modalDate').textContent    = p.date;
+  document.getElementById('modalCounter').textContent = `${idx + 1} / ${filtered.length}`;
+  document.getElementById('btnPrev').disabled = idx === 0;
+  document.getElementById('btnNext').disabled = idx === filtered.length - 1;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function navigate(dir) {
+  const next = currentIdx + dir;
+  if (next >= 0 && next < filtered.length) openModal(next);
+}
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('modalOverlay').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') navigate(1);
+  if (e.key === 'ArrowLeft')  navigate(-1);
+  if (e.key === 'Escape')     closeModal();
+});
+
+/* ── INIT ── */
+renderGallery(photos);
 </script>
 </body>
 </html>
