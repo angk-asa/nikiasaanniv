@@ -43,19 +43,52 @@
       margin-top: 6px;
       font-weight: 300;
     }
-function goBackToHome() {
-  // Kembali ke halaman sebelumnya (index.html)
-  window.location.href = 'index.html';
-}
-    /* ── SEARCH BAR ── */
-    .search-wrap {
+
+    /* ── WRAPPER SEARCH + BACK BUTTON (SAMPINGAN) ── */
+    .top-bar {
       display: flex;
       justify-content: center;
+      align-items: center;
+      gap: 12px;
       padding: 0 16px 20px;
+      flex-wrap: wrap;
+    }
+    
+    /* BACK BUTTON - di samping search bar */
+    .back-home {
+      background: rgba(249, 148, 126, 0.12);
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--deep-rose);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .back-home:hover {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: white;
+      transform: translateX(-2px);
+    }
+    .back-home i {
+      font-size: 0.85rem;
+    }
+
+    /* SEARCH BAR */
+    .search-wrap {
+      flex: 1;
+      max-width: 380px;
     }
     .search-wrap input {
       width: 100%;
-      max-width: 380px;
       padding: 10px 18px;
       border-radius: 100px;
       border: 1.5px solid var(--border);
@@ -69,14 +102,24 @@ function goBackToHome() {
     .search-wrap input:focus { border-color: var(--rose); }
     .search-wrap input::placeholder { color: var(--text-muted); }
 
+    /* Responsif: di HP, tombol dan search bisa stack atau tetap samping */
+    @media (max-width: 550px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-wrap {
+        max-width: 100%;
+      }
+      .back-home {
+        justify-content: center;
+        padding: 8px 16px;
+      }
+    }
+
     /* ── MASONRY GRID — True Pinterest-style ── */
-    /*
-      Trick: columns CSS property membuat masonry native.
-      Tidak pakai Grid/Flexbox — pakai column-count + break-inside: avoid.
-      Ini cara paling reliable untuk masonry di semua browser.
-    */
     .masonry {
-      columns: 4 200px;   /* max 4 kolom, min lebar 200px per kolom */
+      columns: 4 200px;
       column-gap: 14px;
       padding: 4px 14px 60px;
     }
@@ -88,7 +131,7 @@ function goBackToHome() {
 
     /* ── PIN CARD ── */
     .pin {
-      break-inside: avoid;          /* jangan potong card di tengah kolom */
+      break-inside: avoid;
       -webkit-column-break-inside: avoid;
       page-break-inside: avoid;
       margin-bottom: 14px;
@@ -98,7 +141,7 @@ function goBackToHome() {
       cursor: pointer;
       transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s;
       box-shadow: 0 2px 8px rgba(196,92,74,0.07);
-      display: inline-block;        /* penting! agar columns bekerja */
+      display: inline-block;
       width: 100%;
     }
     @media (max-width: 600px) { .pin { margin-bottom: 10px; border-radius: 14px; } }
@@ -112,7 +155,6 @@ function goBackToHome() {
       width: 100%;
       display: block;
       object-fit: cover;
-      /* Tinggi gambar natural = efek Pinterest otomatis */
     }
 
     .pin-info {
@@ -244,8 +286,14 @@ function goBackToHome() {
   <p>Every photo tells our story ✦</p>
 </div>
 
-<div class="search-wrap">
-  <input type="text" id="searchInput" placeholder="Cari kenangan..." oninput="filterPhotos()">
+<!-- SEARCH + BACK BUTTON SAMPINGAN -->
+<div class="top-bar">
+  <a href="#" onclick="goBackToHome(); return false;" class="back-home">
+    ← Back to Home
+  </a>
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Cari kenangan..." oninput="filterPhotos()">
+  </div>
 </div>
 
 <!-- Masonry Gallery -->
@@ -274,8 +322,6 @@ function goBackToHome() {
 <script>
 /* ======================================================
    DATA FOTO
-   Ganti url, caption, dan date sesuai foto kamu.
-   Tinggi gambar natural = efek masonry otomatis!
 ====================================================== */
 const photos = [
   { url: "https://lh3.googleusercontent.com/d/1_DK3bX7_XbBBD-yM8KPnnKW6TpH9hAOf", caption: "The First Bouquet", date: "May 2023" },
@@ -287,7 +333,8 @@ const photos = [
   { url: "https://lh3.googleusercontent.com/d/1YQCI7z7h_WMmdsmotCOnSpIrjj3Wz_e_", caption: "2nd Anniversary", date: "May 2025" },
   { url: "https://lh3.googleusercontent.com/d/1t_f3lfs77Ue2xLqEiKuEedef_7wLDKCD", caption: "Motoran sambil membawa bunga kicil", date: "June 2025" },
   { url: "https://lh3.googleusercontent.com/d/1QLkEvomMKQb3Nc7upS76FC3-5h1pyWiZ", caption: "Telat kasih bunga xixixi", date: "August 2025" },
-  { url: "https://lh3.googleusercontent.com/d/1ThTtJdDkRVAB-GIMSdFk8nBNjK9he8Y0", caption: "My sweetest one", date: "September 2025" },  { url: "https://picsum.photos/id/29/400/460",  caption: "Coffeeshop aesthetic 🫶",      date: "December 2024" },
+  { url: "https://lh3.googleusercontent.com/d/1ThTtJdDkRVAB-GIMSdFk8nBNjK9he8Y0", caption: "My sweetest one", date: "September 2025" },
+  { url: "https://picsum.photos/id/29/400/460",  caption: "Coffeeshop aesthetic 🫶",      date: "December 2024" },
   { url: "https://picsum.photos/id/33/400/400",  caption: "Taman kota yang asik 🌿",     date: "February 2025" },
   { url: "https://picsum.photos/id/106/400/600", caption: "Bunga-bunga di taman 🌻",     date: "January 2025" },
   { url: "https://picsum.photos/id/116/400/340", caption: "Jalan-jalan sore 🌆",          date: "March 2025" },
@@ -299,6 +346,11 @@ const photos = [
 
 let filtered = [...photos];
 let currentIdx = 0;
+
+/* ── FUNGSI BACK TO HOME ── */
+function goBackToHome() {
+  window.location.href = 'index.html';
+}
 
 /* ── RENDER GALLERY ── */
 function renderGallery(list) {
