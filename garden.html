@@ -23,49 +23,72 @@
     .container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 16px;
     }
 
-    /* Header */
+    /* Header sederhana */
     .garden-header {
-      padding: 40px 0 20px;
+      padding: 30px 0 20px;
       text-align: center;
       border-bottom: 1px solid #FFBEB5;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
     .garden-header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 6vw, 3rem);
+      font-size: clamp(1.8rem, 6vw, 2.5rem);
       color: #c45c4a;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .garden-header p {
       color: #a07b6e;
-      max-width: 500px;
-      margin: 0 auto;
+      font-size: 0.9rem;
     }
     .back-home {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 15px;
       color: #F9947E;
       text-decoration: none;
       font-weight: 500;
+      font-size: 0.85rem;
     }
     .back-home:hover {
       color: #c45c4a;
     }
 
-    /* ========== PINTEREST-STYLE MASONRY GRID (FLEXBOX VERSION - MORE RELIABLE) ========== */
+    /* ========== PINTEREST MASONRY GRID ========== */
+    /* Menggunakan CSS Grid dengan row dinamis untuk efek masonry */
     .pinterest-gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin: 30px 0 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+      margin: 20px 0 50px;
+    }
+    
+    /* Responsive column count - dinamis sesuai layar */
+    @media (min-width: 1200px) {
+      .pinterest-gallery {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    @media (min-width: 768px) and (max-width: 1199px) {
+      .pinterest-gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (min-width: 480px) and (max-width: 767px) {
+      .pinterest-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+    }
+    @media (max-width: 479px) {
+      .pinterest-gallery {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
     }
     
     .pin-card {
-      flex: 1 1 auto;
-      width: calc(25% - 15px);
       background: white;
       border-radius: 20px;
       overflow: hidden;
@@ -73,28 +96,6 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
       break-inside: avoid;
-    }
-    
-    /* Responsive column count */
-    @media (min-width: 1200px) {
-      .pin-card {
-        width: calc(25% - 15px);
-      }
-    }
-    @media (min-width: 768px) and (max-width: 1199px) {
-      .pin-card {
-        width: calc(33.33% - 14px);
-      }
-    }
-    @media (min-width: 480px) and (max-width: 767px) {
-      .pin-card {
-        width: calc(50% - 10px);
-      }
-    }
-    @media (max-width: 479px) {
-      .pin-card {
-        width: 100%;
-      }
     }
     
     .pin-card:hover {
@@ -106,10 +107,9 @@
       width: 100%;
       display: block;
       object-fit: cover;
-      aspect-ratio: auto;
     }
     
-    /* Random aspect ratio untuk efek Pinterest */
+    /* Setiap gambar punya tinggi berbeda (random) untuk efek Pinterest */
     .pin-card img[data-height="tall"] {
       aspect-ratio: 3/4;
     }
@@ -122,9 +122,12 @@
     .pin-card img[data-height="square"] {
       aspect-ratio: 1/1;
     }
+    .pin-card img[data-height="very-tall"] {
+      aspect-ratio: 2/3;
+    }
     
     .pin-caption {
-      padding: 12px 15px;
+      padding: 12px 14px;
       font-size: 0.85rem;
       color: #6f4e42;
       background: white;
@@ -136,10 +139,10 @@
     .pin-date {
       font-size: 0.7rem;
       color: #bc8a7a;
-      margin-top: 5px;
+      margin-top: 6px;
     }
 
-    /* Modal Preview (kayak Pinterest) */
+    /* Modal Preview */
     .modal-preview {
       display: none;
       position: fixed;
@@ -193,47 +196,12 @@
       background: rgba(0,0,0,0.8);
     }
 
-    /* Filter buttons (opsional, seperti Pinterest) */
-    .filter-section {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-    .filter-btn {
-      background: transparent;
-      border: 1px solid #FFBEB5;
-      padding: 8px 20px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: 0.2s;
-      color: #6f4e42;
-    }
-    .filter-btn.active {
-      background: #F9947E;
-      border-color: #F9947E;
-      color: white;
-    }
-    .filter-btn:hover {
-      background: #FFBEB5;
-      border-color: #FFBEB5;
-    }
-
     footer {
       text-align: center;
       padding: 30px;
       border-top: 1px solid #FFBEB5;
       color: #bc8a7a;
       font-size: 0.8rem;
-    }
-    
-    /* Loading animation */
-    .loading {
-      text-align: center;
-      padding: 50px;
-      color: #bc8a7a;
     }
   </style>
 </head>
@@ -242,24 +210,13 @@
 <div class="container">
   <div class="garden-header">
     <h1>🌸 Niki's Garden 🌸</h1>
-    <p>A collection of our most beautiful memories — every photo tells our story</p>
+    <p>Every photo tells our story</p>
     <a href="#" onclick="history.back(); return false;" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
   </div>
-  
-  <!-- Filter buttons (opsional) -->
-  <div class="filter-section">
-    <button class="filter-btn active" data-filter="all">All Memories</button>
-    <button class="filter-btn" data-filter="beach">Beach</button>
-    <button class="filter-btn" data-filter="highlands">Highlands</button>
-    <button class="filter-btn" data-filter="city">City</button>
-    <button class="filter-btn" data-filter="special">Special</button>
-  </div>
 
-  <!-- Pinterest-style Gallery (Flexbox Masonry) -->
+  <!-- Pinterest Masonry Gallery - langsung tampil, tanpa filter -->
   <div class="pinterest-gallery" id="galleryContainer">
-    <div class="loading">
-      <i class="fas fa-heartbeat"></i> Loading memories...
-    </div>
+    <!-- Gallery akan diisi JavaScript -->
   </div>
 
   <footer>
@@ -278,120 +235,115 @@
 
 <script>
   // ========== DATA FOTO (GANTI DENGAN FOTO KAMU) ==========
-  // Setiap foto bisa punya tinggi berbeda untuk efek Pinterest!
-  const allPhotos = [
+  const photos = [
     {
       url: "https://picsum.photos/id/104/400/500",
       caption: "Sunset di El Nido 🌅",
       date: "March 2024",
-      tags: "beach",
       height: "tall"
     },
     {
       url: "https://picsum.photos/id/15/400/300",
       caption: "Jalan-jalan di Baguio 🍓",
       date: "December 2023",
-      tags: "highlands",
       height: "short"
     },
     {
       url: "https://picsum.photos/id/96/400/450",
       caption: "Surfing di Siargao 🏄‍♀️",
       date: "August 2024",
-      tags: "beach",
       height: "tall"
     },
     {
       url: "https://picsum.photos/id/20/400/350",
       caption: "Jejak romantis di Vigan 🛺",
       date: "February 2024",
-      tags: "city",
       height: "short"
     },
     {
       url: "https://picsum.photos/id/127/400/400",
       caption: "Cafe hopping di Jakarta ☕",
       date: "January 2024",
-      tags: "city",
       height: "square"
     },
     {
       url: "https://picsum.photos/id/169/400/550",
       caption: "Sunrise di Gunung 🏔️",
       date: "July 2024",
-      tags: "highlands",
       height: "tall"
     },
     {
       url: "https://picsum.photos/id/26/400/380",
       caption: "Jalan-jalan santai 🚶‍♀️",
       date: "September 2024",
-      tags: "special",
       height: "short"
     },
     {
       url: "https://picsum.photos/id/28/400/420",
       caption: "Pantai pasir putih 🏖️",
       date: "May 2024",
-      tags: "beach",
       height: "tall"
     },
     {
       url: "https://picsum.photos/id/42/400/480",
       caption: "Momen spesial kita ✨",
       date: "October 2024",
-      tags: "special",
       height: "tall"
     },
     {
       url: "https://picsum.photos/id/58/400/340",
       caption: "Makan malam romantis 🍽️",
       date: "November 2024",
-      tags: "special",
       height: "short"
     },
     {
       url: "https://picsum.photos/id/29/400/450",
       caption: "Coffeeshop aesthetic 🫶",
       date: "December 2024",
-      tags: "city",
       height: "tall"
     },
     {
       url: "https://picsum.photos/id/33/400/400",
       caption: "Taman kota yang asik",
       date: "February 2025",
-      tags: "city",
       height: "square"
+    },
+    {
+      url: "https://picsum.photos/id/106/400/600",
+      caption: "Bunga-bunga di taman 🌻",
+      date: "January 2025",
+      height: "very-tall"
+    },
+    {
+      url: "https://picsum.photos/id/116/400/350",
+      caption: "Jalan-jalan sore 🌆",
+      date: "March 2025",
+      height: "short"
+    },
+    {
+      url: "https://picsum.photos/id/22/400/500",
+      caption: "Kopi pagi bersama ☕",
+      date: "April 2025",
+      height: "tall"
     }
   ];
 
-  let currentFilter = "all";
   let currentIndex = 0;
+  let currentPhotos = [...photos];
 
-  // Render gallery
+  // Render gallery dengan grid masonry
   function renderGallery() {
     const galleryContainer = document.getElementById('galleryContainer');
-    const filteredPhotos = currentFilter === "all" 
-      ? allPhotos 
-      : allPhotos.filter(photo => photo.tags === currentFilter);
-    
-    if (filteredPhotos.length === 0) {
-      galleryContainer.innerHTML = '<div class="loading" style="width:100%; text-align:center;">No memories found for this category 🌸</div>';
-      return;
-    }
-    
     galleryContainer.innerHTML = '';
     
-    filteredPhotos.forEach((photo, index) => {
+    currentPhotos.forEach((photo, index) => {
       const pin = document.createElement('div');
       pin.className = 'pin-card';
-      pin.setAttribute('data-index', index);
-      pin.onclick = () => openModal(index, filteredPhotos);
+      pin.onclick = () => openModal(index);
       
       pin.innerHTML = `
         <img src="${photo.url}" alt="${photo.caption}" data-height="${photo.height}" loading="lazy" 
-             style="aspect-ratio: ${photo.height === 'tall' ? '3/4' : photo.height === 'short' ? '4/3' : photo.height === 'wide' ? '16/9' : '1/1'}">
+             style="aspect-ratio: ${getAspectRatio(photo.height)}">
         <div class="pin-caption">
           <i class="fas fa-heart"></i> ${photo.caption}
           <div class="pin-date"><i class="far fa-calendar-alt"></i> ${photo.date}</div>
@@ -400,12 +352,20 @@
       galleryContainer.appendChild(pin);
     });
   }
-
-  // Modal functions with dynamic data
-  let currentPhotos = [];
   
-  function openModal(index, photosArray) {
-    currentPhotos = photosArray;
+  function getAspectRatio(height) {
+    switch(height) {
+      case 'tall': return '3/4';
+      case 'short': return '4/3';
+      case 'wide': return '16/9';
+      case 'square': return '1/1';
+      case 'very-tall': return '2/3';
+      default: return '3/4';
+    }
+  }
+
+  // Modal functions
+  function openModal(index) {
     currentIndex = index;
     const photo = currentPhotos[currentIndex];
     const modal = document.getElementById('modalPreview');
@@ -424,16 +384,16 @@
     document.getElementById('modalPreview').classList.remove('active');
   }
   
-  // Navigate modal with arrow keys
+  // Navigasi dengan arrow keys di modal
   function nextImage() {
     if (currentIndex < currentPhotos.length - 1) {
-      openModal(currentIndex + 1, currentPhotos);
+      openModal(currentIndex + 1);
     }
   }
   
   function prevImage() {
     if (currentIndex > 0) {
-      openModal(currentIndex - 1, currentPhotos);
+      openModal(currentIndex - 1);
     }
   }
   
@@ -443,17 +403,6 @@
       if (e.key === 'ArrowLeft') prevImage();
       if (e.key === 'Escape') closeModal();
     }
-  });
-  
-  // Filter functionality
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentFilter = btn.getAttribute('data-filter');
-      renderGallery();
-    });
   });
   
   // Initialize
