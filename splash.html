@@ -1,1 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Our Journey Begins</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #FFF0EB 0%, #FFE4DB 100%);
+      font-family: 'DM Sans', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated hearts background */
+    .heart-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ffb7b2;
+      font-size: 1.2rem;
+      animation: floatHeart 8s infinite ease-in-out;
+      opacity: 0.6;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-20vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Main content */
+    .splash-container {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 20px;
+      animation: fadeInUp 1s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo-circle {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(145deg, #ff8a7a, #e07a68);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px;
+      box-shadow: 0 20px 40px rgba(196, 92, 74, 0.3);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 20px 40px rgba(196, 92, 74, 0.3);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 30px 50px rgba(196, 92, 74, 0.5);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 20px 40px rgba(196, 92, 74, 0.3);
+      }
+    }
+
+    .logo-circle i {
+      font-size: 3.5rem;
+      color: white;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      color: #c45c4a;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      color: #a07b6e;
+      font-size: 1rem;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+    }
+
+    .enter-btn {
+      background: #ff8a7a;
+      border: none;
+      padding: 16px 48px;
+      border-radius: 60px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(255, 138, 122, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .enter-btn:hover {
+      background: #f06e5e;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(255, 138, 122, 0.4);
+    }
+
+    .enter-btn i {
+      font-size: 1.1rem;
+    }
+
+    .quote {
+      font-size: 0.85rem;
+      color: #bc8a7a;
+      max-width: 300px;
+      margin: 0 auto;
+      font-style: italic;
+    }
+
+    /* Audio element (hidden) untuk preload */
+    #splashAudio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="heart-bg" id="heartContainer"></div>
+
+<div class="splash-container">
+  <div class="logo-circle">
+    <i class="fas fa-heart"></i>
+  </div>
+  <h1>Niki & Angkasa</h1>
+  <div class="subtitle">Three Years & Forever</div>
+  
+  <button class="enter-btn" id="enterBtn">
+    <i class="fas fa-arrow-right"></i> Enter Our Story
+  </button>
+  
+  <div class="quote">
+    "Every love story is beautiful, but ours is my favorite"
+  </div>
+</div>
+
+<!-- Audio untuk splash (bisa preload sebelum masuk) -->
+<audio id="splashAudio" preload="auto" loop>
+  <source src="YOUR_MP3_LINK_HERE.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // Floating hearts animation
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '<i class="fas fa-heart"></i>';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+    heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+    heart.style.opacity = Math.random() * 0.5 + 0.3;
+    document.getElementById('heartContainer').appendChild(heart);
+    
+    setTimeout(() => {
+      heart.remove();
+    }, 8000);
+  }
+  
+  setInterval(createHeart, 600);
+  
+  // Preload audio (opsional: play dulu di splash dengan mute)
+  const splashAudio = document.getElementById('splashAudio');
+  
+  // Tombol Enter
+  const enterBtn = document.getElementById('enterBtn');
+  
+  enterBtn.addEventListener('click', () => {
+    // Simpan status ke localStorage bahwa lagu harus play di index
+    localStorage.setItem('playMusic', 'true');
+    
+    // Redirect ke index.html
+    window.location.href = 'index.html';
+  });
+  
+  // Coba preload audio (tidak play, hanya persiapan)
+  splashAudio.load();
+</script>
+</body>
+</html>
