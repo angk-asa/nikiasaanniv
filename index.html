@@ -851,7 +851,19 @@
   </footer>
 </div>
 
+<!-- ========== BACKGROUND MUSIC PLAYER ========== -->
+<!-- Ganti LINK_MP3_KAMU.mp3 dengan link MP3 asli kamu -->
+<audio id="bgMusic" loop preload="auto" style="display: none;">
+  <source src="YOUR_MP3_LINK_HERE.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Tombol Music Control di pojok kanan bawah -->
+<div id="musicControl" style="position: fixed; bottom: 20px; right: 20px; background: #ff8a7a; color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.2s ease;">
+  <i class="fas fa-music"></i>
+</div>
+
 <script>
+  // ========== WHATSAPP CONFIG ==========
   const whatsappNumber = "6282127770375";
   const whatsappMessage = "halo mamas, ini adek mau titip pesan❤️";
   const encodedMessage = encodeURIComponent(whatsappMessage);
@@ -869,88 +881,4 @@
   if (specialBtn && specialBtn.innerText.includes('❤️ Special')) {
     specialBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      window.open(whatsappUrl, '_blank');
-    });
-  }
-  
-  const reliveBtn = document.querySelector('.hero-buttons .btn-primary');
-  if (reliveBtn && reliveBtn.innerText.includes('Relive the magic')) {
-    reliveBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      alert('✨ Reliving every smile, every hug — this is our forever gallery. Happy Anniversary! ✨');
-    });
-  }
-  
-  function openImageModal(cardElement) {
-    const img = cardElement.querySelector('.gallery-img');
-    if (img) {
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImg');
-      modalImg.src = img.src;
-      modal.style.display = 'flex';
-    }
-  }
-  
-  function closeImageModal() {
-    document.getElementById('imageModal').style.display = 'none';
-  }
-  
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeImageModal();
-    }
-  });
-  
-  // ========== SURPRISE BUTTON & SHARE ==========
-  // Buat modal surprise
-  const surpriseModal = document.createElement('div');
-  surpriseModal.className = 'surprise-modal';
-  surpriseModal.innerHTML = `
-    <div class="surprise-content">
-      <i class="fas fa-heartbeat"></i>
-      <h3>💕 You're my everything!</h3>
-      <p>Three years, thousands of memories, and a lifetime of love to go. You make every day feel like a celebration.</p>
-      <p style="font-size:0.9rem;">"In a sea of people, my eyes will always search only for you."</p>
-      <button class="close-surprise">Close</button>
-    </div>
-  `;
-  document.body.appendChild(surpriseModal);
-  
-  const surpriseBtn = document.getElementById('surpriseBtn');
-  if (surpriseBtn) {
-    surpriseBtn.addEventListener('click', () => {
-      surpriseModal.classList.add('active');
-    });
-  }
-  
-  const shareLoveBtn = document.getElementById('shareLoveBtn');
-  if (shareLoveBtn) {
-    shareLoveBtn.addEventListener('click', () => {
-      if (navigator.share) {
-        navigator.share({
-          title: 'Our Anniversary Letter',
-          text: 'I just read the sweetest letter from my love! 💕',
-          url: window.location.href
-        }).catch(() => {});
-      } else {
-        alert('Copy this link to share: ' + window.location.href);
-      }
-    });
-  }
-  
-  // Close modal
-  const closeSurpriseBtn = surpriseModal.querySelector('.close-surprise');
-  if (closeSurpriseBtn) {
-    closeSurpriseBtn.addEventListener('click', () => {
-      surpriseModal.classList.remove('active');
-    });
-  }
-  
-  surpriseModal.addEventListener('click', (e) => {
-    if (e.target === surpriseModal) {
-      surpriseModal.classList.remove('active');
-    }
-  });
-</script>
-</body>
-</html>
+      window.open
