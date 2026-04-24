@@ -852,9 +852,8 @@
 </div>
 
 <!-- ========== BACKGROUND MUSIC PLAYER ========== -->
-<!-- Ganti LINK_MP3_KAMU.mp3 dengan link MP3 asli kamu -->
 <audio id="bgMusic" loop preload="auto" style="display: none;">
-  <source src="https://raw.githubusercontent.com/nikiasaanniv/main/madly.mp3" type="audio/mpeg">
+  <source src="https://raw.githubusercontent.com/angk-asa/nikiasaanniv/main/madly.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Tombol Music Control di pojok kanan bawah -->
@@ -863,22 +862,40 @@
 </div>
 
 <script>
-  // ========== WHATSAPP CONFIG ==========
-  const whatsappNumber = "6282127770375";
-  const whatsappMessage = "halo mamas, ini adek mau titip pesan❤️";
-  const encodedMessage = encodeURIComponent(whatsappMessage);
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+  // ========== MUSIC PLAYER ==========
+  const bgMusic = document.getElementById('bgMusic');
+  const musicControl = document.getElementById('musicControl');
+  let isMusicPlaying = false;
   
-  const whatsappBtn = document.querySelector('.whatsapp-note');
-  if (whatsappBtn) {
-    whatsappBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.open(whatsappUrl, '_blank');
+  // Cek apakah dari splash screen minta play
+  const shouldPlayMusic = localStorage.getItem('playMusic');
+  
+  if (shouldPlayMusic === 'true') {
+    bgMusic.play().then(() => {
+      isMusicPlaying = true;
+      musicControl.innerHTML = '<i class="fas fa-music"></i>';
+    }).catch(e => {
+      console.log('Autoplay blocked:', e);
+      musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
     });
+    localStorage.removeItem('playMusic');
   }
   
-  const specialBtn = document.querySelector('.nav-links .btn-outline');
-  if (specialBtn && specialBtn.innerText.includes('❤️ Special')) {
-    specialBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.open
+  // Tombol mute/unmute
+  musicControl.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (isMusicPlaying) {
+      bgMusic.pause();
+      musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      isMusicPlaying = false;
+    } else {
+      bgMusic.play().then(() => {
+        isMusicPlaying = true;
+        musicControl.innerHTML = '<i class="fas fa-music"></i>';
+      }).catch(err => {
+        console.log('Playback failed:', err);
+        alert('Gagal memutar musik. Coba klik tombol play lagi.');
+      });
+    }
+  });
+</script>
