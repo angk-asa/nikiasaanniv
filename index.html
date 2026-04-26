@@ -4,15 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
   <title>Our Permanent Golden Hour</title>
-  <!-- Google Fonts & Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background: #fffaf7;
@@ -29,9 +24,7 @@
     }
 
     @media (max-width: 640px) {
-      .container {
-        padding: 0 16px;
-      }
+      .container { padding: 0 16px; }
     }
 
     h1, h2, h3, .logo {
@@ -56,32 +49,7 @@
       background: #ffb7b2;
       border-radius: 4px;
     }
-    .center-title {
-      text-align: center;
-    }
-    .center-title:after {
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70px;
-    }
 
-    .btn-primary {
-      display: inline-block;
-      background: #ff8a7a;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.2s ease;
-      box-shadow: 0 4px 8px rgba(255, 138, 122, 0.2);
-      font-size: clamp(0.85rem, 4vw, 0.95rem);
-      text-align: center;
-    }
-    .btn-primary:hover {
-      background: #f06e5e;
-      transform: translateY(-2px);
-    }
     .btn-outline {
       background: transparent;
       border: 2px solid #ffb7b2;
@@ -100,6 +68,7 @@
       border-color: #ff8a7a;
     }
 
+    /* NAVBAR */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -124,12 +93,8 @@
       flex-wrap: wrap;
     }
     @media (max-width: 550px) {
-      .nav-links {
-        gap: 12px;
-      }
-      .nav-links a {
-        font-size: 0.85rem;
-      }
+      .nav-links { gap: 12px; }
+      .nav-links a { font-size: 0.85rem; }
     }
     .nav-links a {
       text-decoration: none;
@@ -139,20 +104,16 @@
       white-space: nowrap;
     }
     @media (max-width: 480px) {
-      .nav-links a {
-        white-space: normal;
-        font-size: 0.8rem;
-      }
+      .nav-links a { white-space: normal; font-size: 0.8rem; }
     }
 
+    /* HERO */
     .hero {
       padding: 40px 0 30px;
       text-align: center;
     }
     @media (max-width: 640px) {
-      .hero {
-        padding: 30px 0 20px;
-      }
+      .hero { padding: 30px 0 20px; }
     }
     .hero-badge {
       background: #ffefea;
@@ -178,18 +139,13 @@
     }
     .hero p {
       max-width: 680px;
-      margin: 0 auto 28px;
+      margin: 0 auto;
       font-size: clamp(1rem, 4vw, 1.2rem);
       color: #6b4e44;
       padding: 0 10px;
     }
-    .hero-buttons {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
 
+    /* STATS */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -206,9 +162,7 @@
         padding: 24px 16px;
       }
     }
-    .stat-card {
-      text-align: center;
-    }
+    .stat-card { text-align: center; }
     .stat-number {
       font-size: clamp(2rem, 6vw, 2.8rem);
       font-weight: 800;
@@ -222,21 +176,9 @@
       margin-top: 6px;
     }
 
-    .feature-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
+    /* FEATURE SECTION (no video) */
+    .feature-section {
       margin: 50px 0;
-      align-items: center;
-    }
-    .feature-text {
-      flex: 1;
-      min-width: 250px;
-      text-align: left;
-    }
-    .feature-video {
-      flex: 1;
-      min-width: 280px;
     }
     .feature-icon {
       font-size: 2rem;
@@ -249,18 +191,16 @@
       justify-content: center;
       margin-bottom: 18px;
     }
-    .feature-text h3 {
+    .feature-section h3 {
       font-size: clamp(1.4rem, 5vw, 1.8rem);
       margin-bottom: 14px;
-      text-align: left;
     }
-    .feature-text p {
-      text-align: left;
+    .feature-section p {
       margin-bottom: 20px;
+      color: #6b4e44;
     }
     .feature-list {
       list-style: none;
-      text-align: left;
     }
     .feature-list li {
       margin-bottom: 14px;
@@ -268,49 +208,9 @@
       gap: 10px;
       align-items: flex-start;
       font-size: clamp(0.85rem, 3.5vw, 0.95rem);
-      text-align: left;
     }
 
-    /* VIDEO PLAYER STYLES */
-    .video-player {
-      background: linear-gradient(145deg, #ffe4db, #ffd3c8);
-      border-radius: 40px;
-      padding: 20px;
-      text-align: center;
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .video-icon {
-      font-size: 3.5rem;
-      color: #e07a68;
-      margin-bottom: 15px;
-    }
-    .video-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #5e3a32;
-      margin-bottom: 15px;
-    }
-    video {
-      width: 100%;
-      max-width: 100%;
-      border-radius: 24px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      background: #f5e6e0;
-    }
-    .video-note {
-      font-size: 0.7rem;
-      color: #bc8a7a;
-      margin-top: 12px;
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-    }
-
+    /* GALLERY */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -350,6 +250,7 @@
       color: #a07b6e;
     }
 
+    /* JOURNEY */
     .journey-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -366,12 +267,11 @@
       margin: 10px 0 6px;
     }
 
-    /* ========== SURAT PANJANG - ESTETIK ========== */
+    /* LETTER */
     .letter-container {
       margin: 60px 0 40px;
       position: relative;
     }
-    
     .letter-decoration {
       text-align: center;
       margin-bottom: 20px;
@@ -379,7 +279,6 @@
       font-size: 1rem;
       letter-spacing: 10px;
     }
-    
     .letter-paper {
       background: #fffef7;
       border-radius: 32px;
@@ -389,79 +288,45 @@
       position: relative;
       transition: transform 0.3s ease;
     }
-    
-    .letter-paper:hover {
-      transform: translateY(-5px);
-    }
-    
+    .letter-paper:hover { transform: translateY(-5px); }
     .letter-paper::before {
       content: '';
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 60px;
-      height: 60px;
+      top: 0; right: 0;
+      width: 60px; height: 60px;
       background: linear-gradient(135deg, transparent 50%, #ffe0d6 50%);
       border-radius: 0 32px 0 0;
     }
-    
     .letter-header {
       text-align: center;
       margin-bottom: 35px;
       border-bottom: 2px dashed #ffd3c8;
       padding-bottom: 20px;
     }
-    
-    .letter-header i {
-      font-size: 2.5rem;
-      color: #e07a68;
-      margin-bottom: 10px;
-    }
-    
+    .letter-header i { font-size: 2.5rem; color: #e07a68; margin-bottom: 10px; }
     .letter-header h2 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.6rem, 5vw, 2rem);
       color: #c45c4a;
       margin: 10px 0;
     }
-    
-    .letter-date {
-      font-size: 0.8rem;
-      color: #bc8a7a;
-      letter-spacing: 2px;
-    }
-    
+    .letter-date { font-size: 0.8rem; color: #bc8a7a; letter-spacing: 2px; }
     .letter-content {
       max-height: 500px;
       overflow-y: auto;
       padding-right: 15px;
       line-height: 1.8;
     }
-    
-    .letter-content::-webkit-scrollbar {
-      width: 5px;
-    }
-    .letter-content::-webkit-scrollbar-track {
-      background: #ffe0d6;
-      border-radius: 10px;
-    }
-    .letter-content::-webkit-scrollbar-thumb {
-      background: #ffb7b2;
-      border-radius: 10px;
-    }
-    
+    .letter-content::-webkit-scrollbar { width: 5px; }
+    .letter-content::-webkit-scrollbar-track { background: #ffe0d6; border-radius: 10px; }
+    .letter-content::-webkit-scrollbar-thumb { background: #ffb7b2; border-radius: 10px; }
     .letter-content p {
       margin-bottom: 20px;
       font-size: clamp(0.95rem, 4vw, 1rem);
       color: #4a3b36;
       text-align: justify;
     }
-    
-    .letter-content p:first-of-type {
-      font-size: 1.1rem;
-      font-weight: 500;
-    }
-    
+    .letter-content p:first-of-type { font-size: 1.1rem; font-weight: 500; }
     .letter-signature {
       margin-top: 35px;
       padding-top: 20px;
@@ -469,18 +334,12 @@
       font-style: italic;
       text-align: right;
     }
-    
-    .letter-signature span {
-      font-size: 0.9rem;
-      color: #a07b6e;
-    }
-    
+    .letter-signature span { font-size: 0.9rem; color: #a07b6e; }
     .letter-signature strong {
       font-size: 1.1rem;
       color: #e07a68;
       font-family: 'Playfair Display', serif;
     }
-    
     .letter-footer {
       text-align: center;
       margin-top: 30px;
@@ -489,131 +348,14 @@
       font-size: 0.8rem;
       color: #bc8a7a;
     }
-    
-    .letter-footer i {
-      margin: 0 8px;
-      color: #ff8a7a;
-    }
-    
-    .letter-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      margin-top: 30px;
-      flex-wrap: wrap;
-    }
-    
-    .btn-letter {
-      background: #ff8a7a;
-      color: white;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 40px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .btn-letter:hover {
-      background: #f06e5e;
-      transform: translateY(-2px);
-    }
-    
-    .btn-letter-outline {
-      background: transparent;
-      border: 2px solid #ffb7b2;
-      color: #5e3a32;
-      padding: 10px 26px;
-      border-radius: 40px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .btn-letter-outline:hover {
-      background: #ffefec;
-      border-color: #ff8a7a;
-      transform: translateY(-2px);
-    }
-    
-    .surprise-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .surprise-modal.active {
-      display: flex;
-    }
-    
-    .surprise-content {
-      background: linear-gradient(135deg, #fff5f0, #fffaf7);
-      border-radius: 48px;
-      padding: 40px;
-      max-width: 400px;
-      text-align: center;
-      animation: bounceIn 0.4s ease;
-    }
-    
-    @keyframes bounceIn {
-      0% { transform: scale(0.8); opacity: 0; }
-      80% { transform: scale(1.05); }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    
-    .surprise-content i {
-      font-size: 4rem;
-      color: #ff8a7a;
-      margin-bottom: 20px;
-    }
-    
-    .surprise-content h3 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-    }
-    
-    .surprise-content p {
-      margin-bottom: 25px;
-      color: #6b4e44;
-    }
-    
-    .close-surprise {
-      background: #ff8a7a;
-      color: white;
-      border: none;
-      padding: 10px 24px;
-      border-radius: 40px;
-      cursor: pointer;
-    }
-    
+    .letter-footer i { margin: 0 8px; color: #ff8a7a; }
+
     @media (max-width: 640px) {
-      .letter-paper {
-        padding: 30px 20px;
-      }
-      .letter-content {
-        max-height: 400px;
-      }
-      .btn-letter, .btn-letter-outline {
-        padding: 10px 20px;
-        font-size: 0.8rem;
-      }
+      .letter-paper { padding: 30px 20px; }
+      .letter-content { max-height: 400px; }
     }
 
+    /* LOVE NOTE */
     .love-note {
       background: #fdeae4;
       border-radius: 50px;
@@ -635,20 +377,43 @@
       font-size: clamp(0.7rem, 3vw, 0.85rem);
     }
 
-    button, a, .btn-primary, .btn-outline {
+    /* IMAGE MODAL */
+    #imageModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
     }
-    @media (max-width: 640px) {
-      .btn-primary, .btn-outline {
-        padding: 10px 18px;
-      }
+
+    /* MUSIC BUTTON */
+    #musicControl {
+      position: fixed;
+      bottom: 20px; right: 20px;
+      background: #ff8a7a;
+      color: white;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: all 0.2s ease;
     }
+    #musicControl:hover { background: #f06e5e; transform: scale(1.1); }
   </style>
 </head>
 <body>
 
 <div class="container">
+
+  <!-- NAVBAR -->
   <div class="navbar">
     <div class="logo">NIKI<span style="font-size:0.9rem;">♥</span></div>
     <div class="nav-links">
@@ -658,22 +423,20 @@
     </div>
   </div>
 
+  <!-- HERO -->
   <div class="hero">
     <div class="hero-badge">
       <i class="fas fa-heart" style="margin-right: 6px;"></i> 3 Years & Forever
     </div>
     <h1>
-     The sun never sets on us<br>
+      The sun never sets on us<br>
       <span class="hero-highlight">Light leads us home</span>
     </h1>
     <p>From the first dawn we shared to the golden hues of our latest adventure, every moment has been illuminated by your presence. 
-      This is a curated archive of our shared horizon a digital testament to a love that only grows warmer with time.</p>
-    <div class="hero-buttons">
-      <a href="#" class="btn-primary"><i class="fas fa-gift"></i> Relive the magic</a>
-      <a href="#" class="btn-outline whatsapp-note"> Send me a note</a>
-    </div>
+      This is a curated archive of our shared horizon — a digital testament to a love that only grows warmer with time.</p>
   </div>
 
+  <!-- STATS -->
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-number">1095<span style="font-size:1.2rem;">+</span></div>
@@ -684,7 +447,7 @@
       <div class="stat-label">Cups of Coffee</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">23+<span style="font-size:1.2rem;"></span></div>
+      <div class="stat-number">23+</div>
       <div class="stat-label">Dates Across the Map</div>
     </div>
     <div class="stat-card">
@@ -693,44 +456,20 @@
     </div>
   </div>
 
-  <!-- FEATURE GRID dengan Video Player di kanan -->
-  <div class="feature-grid">
-    <div class="feature-text">
-      <div class="feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
-      <h3>Our love map <br>crafted with heart</h3>
-      <p>Every hug, surprise & late-night talk made us discover new "destinations" in each other's soul. 
-        Here's how we keep the romance alive:</p>
-      <ul class="feature-list">
-        <li><i class="fas fa-check-circle"></i> <strong>✨ All-in-One Memories</strong> – From thousands of miles to cozy dates, we capture everything in one place.</li>
-        <li><i class="fas fa-headset"></i> <strong>💬 24/7 Heart Support</strong> – For the sunshine or the storms. I'm just one call away.</li>
-      </ul>
-    </div>
-    
-    <!-- VIDEO PLAYER -->
-    <div class="feature-video">
-      <div class="video-player">
-        <div class="video-icon">
-          <i class="fas fa-video"></i>
-        </div>
-        <div class="video-title">Our favorite anthem</div>
-        
-        <video controls width="100%">
-          <source src="https://drive.google.com/uc?export=download&id=1OWtE_E0bvDZVvoC1MenuEh7O4XO60UJw" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        
-        <div class="video-note">
-          <i class="fas fa-heart" style="font-size:0.6rem;"></i>
-          <span>Hopefully this song can be play on your device 😂</span>
-          <i class="fas fa-heart" style="font-size:0.6rem;"></i>
-        </div>
-      </div>
-    </div>
+  <!-- FEATURE (tanpa video) -->
+  <div class="feature-section">
+    <div class="feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
+    <h3>Our love map crafted with heart</h3>
+    <p>Every hug, surprise & late-night talk made us discover new "destinations" in each other's soul. Here's how we keep the romance alive:</p>
+    <ul class="feature-list">
+      <li><i class="fas fa-check-circle" style="color:#ff8a7a; margin-top:2px;"></i> <span><strong>✨ All-in-One Memories</strong> – From thousands of miles to cozy dates, we capture everything in one place.</span></li>
+      <li><i class="fas fa-headset" style="color:#ff8a7a; margin-top:2px;"></i> <span><strong>💬 24/7 Heart Support</strong> – For the sunshine or the storms. I'm just one call away.</span></li>
+    </ul>
   </div>
 
-  <!-- GALERI FOTO -->
+  <!-- GALLERY -->
   <h2 class="section-title">💖 Our favorite moments together</h2>
-  <div class="gallery-grid" id="galleryGrid">
+  <div class="gallery-grid">
     <div class="gallery-card" onclick="openImageModal(this)">
       <img src="https://lh3.googleusercontent.com/d/1wqkLz_06dySTcP1LhTl4-TwTTweBKM2P" alt="My Love of My Life" class="gallery-img" onerror="this.src='https://picsum.photos/id/127/400/300'">
       <div class="gallery-caption">
@@ -761,141 +500,147 @@
     </div>
   </div>
 
-  <!-- Modal preview foto -->
-  <div id="imageModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; justify-content:center; align-items:center; cursor:pointer;" onclick="closeImageModal()">
+  <!-- IMAGE MODAL -->
+  <div id="imageModal" onclick="closeImageModal()">
     <img id="modalImg" src="" style="max-width:90%; max-height:90%; border-radius:20px; object-fit:contain;">
     <div style="position:absolute; top:20px; right:30px; color:white; font-size:30px; cursor:pointer;">&times;</div>
   </div>
 
-    <div style="margin: 40px 0 10px;">
-    <h2 class="section-title">🌍 Wherever you go, I'll follow<br>our next chapter awaits</h2>
+  <!-- JOURNEY -->
+  <div style="margin: 40px 0 10px;">
+    <h2 class="section-title">🌍 Wherever you go, I'll follow — our next chapter awaits</h2>
   </div>
   <div class="journey-cards">
     <div class="journey-item">
       <i class="fas fa-globe-asia" style="font-size:1.8rem;"></i>
       <h3>Anywhere with you is home</h3>
-      <p>It doesn't matter if it's a busy city or a quiet countryside as long as you're beside me, every place feels like paradise. Our hands fit perfectly anywhere in the world.</p>
+      <p>It doesn't matter if it's a busy city or a quiet countryside — as long as you're beside me, every place feels like paradise. Our hands fit perfectly anywhere in the world.</p>
     </div>
     <div class="journey-item">
       <i class="fas fa-plane-departure" style="font-size:1.8rem;"></i>
       <h3>Building our future abroad</h3>
-      <p>One day, we'll pack our dreams and fly across the ocean together. A new country, a new life, but the same love that grows stronger with every step. Let's build something beautiful you and me.</p>
+      <p>One day, we'll pack our dreams and fly across the ocean together. A new country, a new life, but the same love that grows stronger with every step. Let's build something beautiful — you and me.</p>
     </div>
   </div>
 
-  <!-- ========== SURAT PANJANG (menggantikan steps & love note sebelumnya) ========== -->
+  <!-- LETTER -->
   <div class="letter-container">
     <div class="letter-decoration">
       <i class="fas fa-heart"></i>
       <i class="fas fa-star"></i>
       <i class="fas fa-heart"></i>
     </div>
-    
+
     <div class="letter-paper">
       <div class="letter-header">
         <i class="fas fa-envelope-open-text"></i>
         <h2>A Letter for You, My Love</h2>
         <div class="letter-date">Three Years & Forever • 2026</div>
       </div>
-      
+
       <div class="letter-content" id="loveLetter">
         <p>My dearest Niki,</p>
-        
-        <p> It feels like just yesterday when I first saw your smile, and yet I can't imagine a single day of my life without you in it. You've turned my world into something I never knew I needed: brighter, warmer, and full of meaning.</p>
-        
-        <p>I still remember that quiet moment in the back of a taxi, when the city moved around us and everything else disappeared. That was when I knew. Not with words, not with grand gestures, just a feeling so certain it never left.
-</p>
-        
+        <p>It feels like just yesterday when I first saw your smile, and yet I can't imagine a single day of my life without you in it. You've turned my world into something I never knew I needed: brighter, warmer, and full of meaning.</p>
+        <p>I still remember that quiet moment in the back of a taxi, when the city moved around us and everything else disappeared. That was when I knew. Not with words, not with grand gestures, just a feeling so certain it never left.</p>
         <p>I love the way you laugh at my jokes even when they're not funny. I love that you see all of me, the parts I'm proud of and the parts I'm still working on, and you choose to stay anyway. You forgive easily, you love patiently, and somehow you make me feel like I'm worth every bit of that grace.</p>
-        
         <p>We've cried together too. Losing Onat left a hole that words couldn't fill, and when Sapi fell sick with the same thing, I held my breath and held your hand. But we got through it together, and watching Sapi healthy and thriving today feels like a small miracle we earned. Those were the moments I realized that having you isn't just about the good days. It's about knowing that even in the hardest ones, I'm not alone.</p>
-        
-        <p>Every bouquet I've brought you was never really about the flowers. It was my way of saying: I still choose you. This month, and the month before, and every month I'm lucky enough to have.
-           There's a version of me that existed before you, and then there's the person I am now, someone who loves deeper, dreams bigger, and believes in forever because of you.</p>
-        
+        <p>Every bouquet I've brought you was never really about the flowers. It was my way of saying: I still choose you. This month, and the month before, and every month I'm lucky enough to have. There's a version of me that existed before you, and then there's the person I am now — someone who loves deeper, dreams bigger, and believes in forever because of you.</p>
         <p>I don't know what the next three years will bring. But I know I want to be there for every quiet morning, every laugh that catches you off guard, every hard night we get through together. More road trips, more lazy Sundays, more flowers, and more of your hand in mine.</p>
         <p>Thank you for choosing me, every single day. Thank you for your patience, your warmth, and for making me feel like the luckiest person in the world.</p>
-        <p>You are my home. You are my always. I love you so much. ❤️ </p>
-        
+        <p>You are my home. You are my always. I love you so much. ❤️</p>
+
         <p class="letter-signature">
           With all my love,<br>
           <span>Yours forever,</span><br>
           <strong>Angkasa ✨</strong>
         </p>
       </div>
-      
+
       <div class="letter-footer">
         <i class="fas fa-heart"></i> Every word is for you <i class="fas fa-heart"></i>
       </div>
     </div>
-    
-    <div class="letter-buttons">
-      <button class="btn-letter" id="surpriseBtn">
-        <i class="fas fa-gift"></i> A little surprise for you
-      </button>
-      <button class="btn-letter-outline" id="shareLoveBtn">
-        <i class="fas fa-share-alt"></i> Share this moment
-      </button>
-    </div>
   </div>
 
+  <!-- LOVE NOTE -->
   <div class="love-note">
-    <i class="fas fa-heart heart-icon" style="font-size:2rem; color:#e46854;"></i>
+    <i class="fas fa-heart" style="font-size:2rem; color:#e46854;"></i>
     <p>"Every love story is beautiful, but ours is my favorite. Happy anniversary, my sunshine. Here's to more sunsets, more laughter, and countless adventures in your arms."</p>
-    <div style="font-weight: 600; margin-top: 8px;"> — Solely Yours, always. ✨</div>
+    <div style="font-weight: 600; margin-top: 8px;">— Solely Yours, always. ✨</div>
   </div>
 
   <footer>
     <p><i class="fas fa-heart" style="color:#ff8a7a;"></i> Designed with all my love • Niki and Angkasa anniversary edition <i class="fas fa-heart" style="color:#ff8a7a;"></i></p>
     <p style="font-size: 0.75rem; margin-top: 10px;">© 2026 • Celebrating us — a journey of endless wander and sweet devotion.</p>
   </footer>
+
 </div>
 
-<!-- ========== BACKGROUND MUSIC PLAYER ========== -->
-<audio id="bgMusic" loop preload="auto" style="display: none;">
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop preload="auto" style="display:none;">
   <source src="https://raw.githubusercontent.com/angk-asa/nikiasaanniv/main/madly.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Tombol Music Control di pojok kanan bawah -->
-<div id="musicControl" style="position: fixed; bottom: 20px; right: 20px; background: #ff8a7a; color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.2s ease;">
-  <i class="fas fa-music"></i>
+<!-- Music Control Button -->
+<div id="musicControl">
+  <i class="fas fa-volume-mute"></i>
 </div>
 
 <script>
+  // ========== IMAGE MODAL ==========
+  function openImageModal(card) {
+    const img = card.querySelector('.gallery-img');
+    document.getElementById('modalImg').src = img.src;
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'flex';
+  }
+  function closeImageModal() {
+    document.getElementById('imageModal').style.display = 'none';
+  }
+
   // ========== MUSIC PLAYER ==========
   const bgMusic = document.getElementById('bgMusic');
   const musicControl = document.getElementById('musicControl');
   let isMusicPlaying = false;
-  
-  // Cek apakah dari splash screen minta play
-  const shouldPlayMusic = localStorage.getItem('playMusic');
-  
-  if (shouldPlayMusic === 'true') {
+
+  function startMusic() {
     bgMusic.play().then(() => {
       isMusicPlaying = true;
       musicControl.innerHTML = '<i class="fas fa-music"></i>';
-    }).catch(e => {
-      console.log('Autoplay blocked:', e);
-      musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
-    });
-    localStorage.removeItem('playMusic');
+    }).catch(() => {});
   }
-  
-  // Tombol mute/unmute
+
+  function stopMusic() {
+    bgMusic.pause();
+    isMusicPlaying = false;
+    musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+  }
+
+  // Coba autoplay saat user pertama kali interaksi dengan halaman
+  // (workaround untuk autoplay policy browser)
+  const shouldPlay = localStorage.getItem('playMusic') === 'true';
+  if (shouldPlay) {
+    localStorage.removeItem('playMusic');
+    document.addEventListener('click', function firstClick() {
+      startMusic();
+      document.removeEventListener('click', firstClick);
+    }, { once: true });
+    document.addEventListener('touchstart', function firstTouch() {
+      startMusic();
+      document.removeEventListener('touchstart', firstTouch);
+    }, { once: true });
+  }
+
+  // Tombol toggle musik
   musicControl.addEventListener('click', (e) => {
     e.stopPropagation();
     if (isMusicPlaying) {
-      bgMusic.pause();
-      musicControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
-      isMusicPlaying = false;
+      stopMusic();
     } else {
-      bgMusic.play().then(() => {
-        isMusicPlaying = true;
-        musicControl.innerHTML = '<i class="fas fa-music"></i>';
-      }).catch(err => {
-        console.log('Playback failed:', err);
-        alert('Gagal memutar musik. Coba klik tombol play lagi.');
-      });
+      startMusic();
     }
   });
 </script>
+
+</body>
+</html>
