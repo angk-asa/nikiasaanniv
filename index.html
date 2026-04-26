@@ -176,9 +176,25 @@
       margin-top: 6px;
     }
 
-    /* FEATURE SECTION (no video) */
-    .feature-section {
-      margin: 50px 0;
+    /* FEATURE SECTION */
+    .feature-section { margin: 50px 0; }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 40px;
+      align-items: center;
+    }
+    .feature-photo img {
+      width: 260px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 28px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      .feature-photo img { width: 100%; height: 240px; }
     }
     .feature-icon {
       font-size: 2rem;
@@ -191,11 +207,11 @@
       justify-content: center;
       margin-bottom: 18px;
     }
-    .feature-section h3 {
+    .feature-text h3 {
       font-size: clamp(1.4rem, 5vw, 1.8rem);
       margin-bottom: 14px;
     }
-    .feature-section p {
+    .feature-text p {
       margin-bottom: 20px;
       color: #6b4e44;
     }
@@ -456,7 +472,7 @@
     </div>
   </div>
 
-<!-- FEATURE dengan foto -->
+  <!-- FEATURE dengan foto -->
   <div class="feature-section">
     <div class="feature-grid">
       <div class="feature-text">
@@ -473,7 +489,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- GALLERY -->
   <h2 class="section-title">💖 Our favorite moments together</h2>
   <div class="gallery-grid">
