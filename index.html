@@ -184,17 +184,29 @@
       gap: 40px;
       align-items: center;
     }
+    .feature-photo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
     .feature-photo img {
-      width: 260px;
-      height: 300px;
+      width: 100%;
+      height: 130px;
       object-fit: cover;
-      border-radius: 28px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       display: block;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .feature-photo img:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
     @media (max-width: 768px) {
       .feature-grid { grid-template-columns: 1fr; }
-      .feature-photo img { width: 100%; height: 240px; }
+      .feature-photo { grid-template-columns: 1fr 1fr; }
+      .feature-photo img { height: 120px; }
     }
     .feature-icon {
       font-size: 2rem;
@@ -485,7 +497,10 @@
         </ul>
       </div>
       <div class="feature-photo">
-        <img src="https://lh3.googleusercontent.com/d/1HfykYbmfqdJkywQnHGEAp5VH7e6QlHKg" alt="Our Moment" onerror="this.src='https://picsum.photos/id/127/400/500'">
+        <img src="https://lh3.googleusercontent.com/d/1xLZ4kINAzLiI1u-7t_Pa50NXWKwL7ykO" alt="Our Moment 1" onclick="openFeatureModal(this)" onerror="this.src='https://picsum.photos/id/101/300/300'">
+        <img src="https://lh3.googleusercontent.com/d/13ByMlWJZTMdNOyT0ont5wyy5yh6HV1Qj" alt="Our Moment 2" onclick="openFeatureModal(this)" onerror="this.src='https://picsum.photos/id/102/300/300'">
+        <img src="https://lh3.googleusercontent.com/d/1HfykYbmfqdJkywQnHGEAp5VH7e6QlHKg" alt="Our Moment 3" onclick="openFeatureModal(this)" onerror="this.src='https://picsum.photos/id/103/300/300'">
+        <img src="https://lh3.googleusercontent.com/d/1lMArARlmwj1peF9FBli5IMsx6wE_dIAC" alt="Our Moment 4" onclick="openFeatureModal(this)" onerror="this.src='https://picsum.photos/id/104/300/300'">
       </div>
     </div>
   </div>
@@ -616,6 +631,14 @@
     document.getElementById('modalImg').src = img.src;
     const modal = document.getElementById('imageModal');
     modal.style.display = 'flex';
+  }
+  function openFeatureModal(img) {
+    document.getElementById('modalImg').src = img.src;
+    document.getElementById('imageModal').style.display = 'flex';
+  }
+  function openFeatureModal(img) {
+    document.getElementById('modalImg').src = img.src;
+    document.getElementById('imageModal').style.display = 'flex';
   }
   function closeImageModal() {
     document.getElementById('imageModal').style.display = 'none';
